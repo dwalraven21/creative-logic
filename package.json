@@ -1,0 +1,29 @@
+{
+  "name": "sei-project2",
+  "engines": {
+	  "node": "10.16.0"
+  }
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dwalraven21/SEI-Project2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dwalraven21/SEI-Project2/issues"
+  },
+  "homepage": "https://github.com/dwalraven21/SEI-Project2#readme",
+  "dependencies": {
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.6.7"
+  }
+}
