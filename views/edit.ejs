@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<% include ./partials/head.ejs %>
+	</head>
+	<body>
+		<h1>Edit</h1>
+		<form class="form-group" action="/<%=mockup.id%>?_method=PUT" method="POST">
+        <!--  NOTE: the form is pre-populated with values for the server-->
+        Name: <input  type="text" name="name" value="<%=mockup.name%>"/><br/>
+
+		Description: <textarea  type="text" name="description">"<%=mockup.description%>"</textarea><br/>
+
+		Image: <input  type="text" name="img" value="<%=mockup.img%>"/><br/>
+
+		Selected:
+            <input type="checkbox" name="selected"
+                <% if(mockup.selected === true){ %>
+                    checked
+                <% } %>
+            />
+            <br/>
+
+		Built: <input type="checkbox" name="selected"
+			<% if(mockup.built === true){ %>
+				checked
+			<% } %>
+		/>
+		<br/>
+
+		Live Site URL: <input  type="text" name="img" value="<%=mockup.liveURL%>"/><br/>
+
+        <input type="submit" value="Submit Changes"/>
+	        </form>
+	</body>
+</html>

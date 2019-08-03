@@ -4,23 +4,11 @@
 		<% include ./partials/head.ejs %>
 	</head>
 	<body>
-		<div class="container">
-			<h1>
-			<%	if (currentUser) { %>
-			Welcome <%= currentUser.username %>
-			<form action="/sessions?_method=DELETE" method="POST">
-            <input type="submit"value="Log Out" class="waves-effect waves-light btn">
-          	</form>
-			</h1>
-			<h2>
-			<a class="waves-effect waves-light btn" href="/app">Join the Party</a>
-			</h2>
-			<% } else { %>
-			<h2>Please</h2>
-			<a class="waves-effect waves-light btn" href="/users/new">Sign Up</a>
-			<h3>or</h3>
-			<a href="/sessions/new" class="waves-effect waves-light btn"> Log In</a>
-			<% } %>
-		</div>
+		<h1>Index</h1>
+		<a href="/new">Add A New Mockup</a>
+		<% for(let i = 0; i < mockups.length; i++){ %>
+		<h2><%=mockups[i].name%></h2>
+		<img src="<%=mockups[i].img%>">
+		<a href="/<%=mockups[i].id%>/show">More Info</a>	
 	</body>
 </html>

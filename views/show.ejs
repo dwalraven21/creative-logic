@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<% include ./partials/head.ejs %>
+	</head>
+	<body>
+		<h1>Show</h1>
+		<a href="/">Return to Home</a>
+		<h2><%=mockup.name%></h2>
+		<img src="<%=mockup.img%>">
+		<p><%=mockup.description%></p>
+		<h3>
+		<% if(mockup.selected === true){ %>
+            This mockup has already been selcted by a developer.
+        <% } else { %>
+            This mockup is available for use.
+			<a href="#">Selct Mockup</a>
+        <% } %>
+		</h3>
+		<h3>
+		<% if(mockup.built === true){ %>
+            <a href="<%=mockup.liveURL%>">View the live site.</a>
+        <% } else { %>
+
+        <% } %>
+		</h3>
+
+	</body>
+</html>
