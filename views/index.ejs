@@ -5,28 +5,30 @@
 	</head>
 	<body class="light-blue lighten-5">
 		<% include ./partials/nav.ejs %>
-		<div class="container">
-		<a href="/designers/new" class="waves-effect waves-light btn-large">Add A New Mockup</a><br><br>
-		<div class="row">
-		<% for(let i = 0; i < mockups.length; i++){ %>
-			<!-- create card -->
-  				<div class="col s12 m6 xl4">
-		  		<div class="card">
-				  <div class="card-image waves-effect waves-block waves-light">
-  			      <img class="activator" src="<%=mockups[i].img%>">
-  			    </div>
-  			    <div class="card-content">
-  			      <span class="card-title activator grey-text text-darken-4"><%=mockups[i].name%><i class="material-icons right">more_vert</i></span>
-  			      <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn">Select</a></p>
-  			    </div>
-  			    <div class="card-reveal">
-  			      <span class="card-title grey-text text-darken-4"><%=mockups[i].name%><i class="material-icons right">close</i></span>
-  			      <p><%=mockups[i].description%></p>
-  			    </div>
-  			  </div>
-		  	</div>
-		<% } %>
-		</div>
-		</div>
+		<main>
+			<div class="container">
+				<div class="row">
+				<% for(let i = 0; i < mockups.length; i++){ %>
+					<!-- create card -->
+		  				<div class="col s12 m6 xl4">
+				  		<div class="card">
+						  <div class="card-image waves-effect waves-block waves-light orange">
+		  			      <img class="activator" src="<%=mockups[i].img%>">
+		  			    </div>
+		  			    <div class="card-content">
+		  			      <span class="card-title activator grey-text text-darken-4"><%=mockups[i].name%><i class="material-icons right">more_vert</i></span>
+		  			      <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange">Select</a></p>
+		  			    </div>
+		  			    <div class="card-reveal">
+		  			      <span class="card-title grey-text text-darken-4"><%=mockups[i].name%><i class="material-icons right">close</i></span>
+		  			      <p><%=mockups[i].description%></p>
+		  			    </div>
+		  			  </div>
+				  	</div>
+				<% } %>
+				</div>
+			</div>
+		</main>
+	<% include ./partials/footer.ejs %>
 	</body>
 </html>
