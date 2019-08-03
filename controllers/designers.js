@@ -4,23 +4,23 @@ const designers = express.Router()
 const Mockup = require('../models/mockups.js')
 const seed = require('../models/seed.js')
 
-designers.get('/designers/seed', (req, res) => {
+designers.get('/seed', (req, res) => {
 	Mockup.create(seed, (err, data) => {
 		res.redirect('/designers')
 	})
 })
 
-designers.get('/designers/new', (req, res) => {
+designers.get('/new', (req, res) => {
     res.render('new.ejs');
 });
 
-designers.post('/designers', (req, res) => {
+designers.post('/', (req, res) => {
 	Mockup.create(req.body, () => {
 		res.redirect('/designers');
 	})
 })
 
-designers.get('/designers', (req, res) => {
+designers.get('/', (req, res) => {
     Mockup.find({}, (error, allMockups) => {
         res.render('index.ejs',{
             mockups: allMockups
@@ -28,7 +28,7 @@ designers.get('/designers', (req, res) => {
     })
 });
 
-designers.get('/designers/:id/show', (req, res)=>{
+designers.get('/:id/show', (req, res)=>{
     Mockup.findById(req.params.id, (err, foundMockup)=>{
         res.render('show.ejs', {
             mockup: foundMockup
@@ -36,7 +36,7 @@ designers.get('/designers/:id/show', (req, res)=>{
     });
 });
 
-designers.delete('/designers/:id', (req, res)=>{
+designers.delete('/:id', (req, res)=>{
     Mockup.findByIdAndRemove(req.params.id, (err, data)=>{
         res.redirect('/designers')
     });

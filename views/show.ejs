@@ -4,26 +4,43 @@
 		<% include ./partials/head.ejs %>
 	</head>
 	<body>
-		<h1>Show</h1>
-		<a href="/">Return to Home</a>
-		<h2><%=mockup.name%></h2>
-		<img src="<%=mockup.img%>">
-		<p><%=mockup.description%></p>
-		<h3>
-		<% if(mockup.selected === true){ %>
-            This mockup has already been selcted by a developer.
-        <% } else { %>
-            This mockup is available for use.
-			<a href="#">Selct Mockup</a>
-        <% } %>
-		</h3>
-		<h3>
-		<% if(mockup.built === true){ %>
-            <a href="<%=mockup.liveURL%>">View the live site.</a>
-        <% } else { %>
-
-        <% } %>
-		</h3>
-
+		<div class="container">
+		<a href="/designers" class="waves-effect waves-light btn-large indigo accent-1">Return to Home</a>
+		<div class="col s12 m7">
+		  <h2 class="header"><%=mockup.name%></h2>
+		  <div class="card horizontal">
+			<div class="card-image">
+			  <img src="<%=mockup.img%>">
+			</div>
+			<div class="card-stacked">
+			  <div class="card-content">
+				<p><%=mockup.description%></p><br><br>
+				<div class="card-action">
+				<% if(mockup.selected === true){ %>
+		           <p><b>This mockup has already been selcted by a developer.</b></p>
+				   <% if(mockup.built === true){ %>
+					   <br><a href="<%=mockup.liveURL%>" target="_blank" class="indigo-text text-darken-3">View Live Site</a><br><br>
+					   <% } else { %>
+					  <% } %>
+		        <% } else { %>
+		           <p><b>This mockup is available for use.</b></p><br>
+					<a href="#" class="waves-effect waves-light btn indigo accent-1">Request Source Files</a>
+		        <% } %>
+					<div class="row">
+						<div class="col">
+							<form action='/designers/<%=mockup.id%>?_method=DELETE' method="POST">
+							<input type="submit" value="DELETE" class="waves-effect waves-light btn indigo accent-1"/>
+							</form>
+						</div>
+						<div class="col">
+							<a href="/<%=mockup.id%>/edit" class="waves-effect waves-light btn indigo accent-1">Edit</a>
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>
+		  </div>
+		</div>
+		</div>
 	</body>
 </html>
