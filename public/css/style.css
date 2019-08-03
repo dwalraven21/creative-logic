@@ -11,6 +11,30 @@
 	font-size: inherit;
 }
 
+/* label color */
+  .input-field label {
+	color: #03a9f4;
+  }
+  /* label focus color */
+  .input-field input[type=text]:focus + label {
+	color: #ff9800;
+  }
+  /* label underline focus color */
+  .input-field input[type=text]:focus {
+	border-bottom: 1px solid #ff9800;
+	box-shadow: 0 1px 0 0 #000;
+  }
+
+  /* icon prefix focus color */
+  .input-field .prefix.active {
+	color: #03a9f4;
+  }
+
+  .checkbox-orange[type="checkbox"].filled-in:checked + label:after{
+       border: 2px solid #ff9800;
+       background-color: #ff9800;
+  }
+
 nav {
 	height: 65px;
 	line-height: 65px;
@@ -20,6 +44,7 @@ body {
    display: flex;
    min-height: 100vh;
    flex-direction: column;
+   background-color: #e1f5fe;
  }
 
  main {

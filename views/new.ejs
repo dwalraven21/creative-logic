@@ -4,12 +4,29 @@
 		<% include ./partials/head.ejs %>
 	</head>
 	<body>
-		<h1>New Mockup</h1>
-		<form action="/designers" method="POST">
-            Name: <input type="text" name="name" /><br/>
-            Description: <input type="text" name="description" /><br/>
-            Image URL: <input type="text" name="img" /><br/>
-            <input type="submit" value="Add Mockup"/>
-        </form>
+		<% include ./partials/nav.ejs %>
+		<main>
+			<div class="container">
+				<h2 class="header light-blue-text text-lighten-1">New Mockup</h2>
+					<form class="col s12 light-blue-text text-lighten-1" action="/designers" method="POST">
+				        <div class="input-field col s12">
+					        <input id="project_name" type="text">
+					        <label for="project_name">Project Name</label>
+						</div>
+						<div class="input-field col s12">
+							<textarea id="textarea1" class="materialize-textarea"></textarea>
+					        <label for="textarea1">Description</label>
+						</div>
+				        <div class="input-field col s12">
+				          <input id="image_url" type="text">
+				          <label for="image_url">Image URL</label>
+				        </div>
+					    <div class="row">
+					      <input type="submit" value="Add Mockup" class="waves-effect waves-light btn orange"/>
+					    </div>
+					</form>
+  			</div>
+		</main>
+		<% include ./partials/footer.ejs %>
 	</body>
 </html>

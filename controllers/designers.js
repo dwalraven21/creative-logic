@@ -42,7 +42,7 @@ designers.delete('/:id', (req, res)=>{
     });
 });
 
-designers.get('/designers/:id/edit', (req, res)=>{
+designers.get('/:id/edit', (req, res)=>{
     Mockup.findById(req.params.id, (err, foundMockup)=>{
         res.render(
     		'edit.ejs',
@@ -53,7 +53,7 @@ designers.get('/designers/:id/edit', (req, res)=>{
     });
 });
 
-designers.put('/designers/:id', (req, res)=>{
+designers.put('/:id', (req, res)=>{
     //{new: true} tells mongoose to send the updated model into the callback
     Mockup.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedModel)=>{
         res.redirect('/designers');

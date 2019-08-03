@@ -1,36 +1,59 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 	<head>
-		<% include ./partials/head.ejs %>
+	<% include ./partials/head.ejs %>
 	</head>
 	<body>
-		<h1>Edit</h1>
-		<form class="form-group" action="/designers/<%=mockup.id%>?_method=PUT" method="POST">
-        <!--  NOTE: the form is pre-populated with values for the server-->
-        Name: <input  type="text" name="name" value="<%=mockup.name%>"/><br/>
-
-		Description: <textarea  type="text" name="description">"<%=mockup.description%>"</textarea><br/>
-
-		Image: <input  type="text" name="img" value="<%=mockup.img%>"/><br/>
-
-		Selected:
-            <input type="checkbox" name="selected"
-                <% if(mockup.selected === true){ %>
-                    checked
-                <% } %>
-            />
-            <br/>
-
-		Built: <input type="checkbox" name="selected"
-			<% if(mockup.built === true){ %>
-				checked
-			<% } %>
-		/>
-		<br/>
-
-		Live Site URL: <input  type="text" name="img" value="<%=mockup.liveURL%>"/><br/>
-
-        <input type="submit" value="Submit Changes"/>
+	<% include ./partials/nav.ejs %>
+	<main>
+		<div class="container">
+			<h2 class="header light-blue-text text-lighten-1">Edit<h2>
+			<form class="col s12 light-blue-text text-lighten-1" action="/designers/<%=mockup.id%>?_method=PUT" method="POST">
+	        <!--  NOTE: the form is pre-populated with values for the server-->
+				<div class="input-field col s12">
+					<input id="project_name" type="text" name="name" value="<%=mockup.name%>">
+					<label for="project_name">Project Name</label>
+				</div>
+				<div class="input-field col s12">
+					<textarea id="textarea1" class="materialize-textarea" name="description">"<%=mockup.description%>"</textarea>
+					<label for="textarea1">Description</label>
+				</div>
+				<div class="input-field col s12">
+				  <input id="image_url" type="text" name="img" value="<%=mockup.img%>">
+				  <label for="image_url">Image URL</label>
+				</div>
+				<div class="row">
+					<div class="input-field col s6">
+						<label>
+					        <input type="checkbox" class="filled-in checkbox-orange"
+							<% if (mockup.selected === true){ %>
+							   checked="checked"
+						   <% } %>
+						   />
+					        <span>Selected</span>
+					    </label>
+					</div>
+					<div class="input-field col s6">
+	 					<label>
+	 				        <input type="checkbox" class="filled-in checkbox-orange"
+	 						<% if (mockup.built === true){ %>
+	 						   checked="checked"
+	 					   <% } %>
+	 					   />
+	 				        <span>Built</span>
+	 				    </label>
+					</div>
+				</div><br>
+				<div class="input-field col s12">
+				  <input id="live_url" type="text" name="liveURL" value="<%=mockup.liveURL%>">
+				  <label for="live_url">Live Site URL</label>
+				</div>
+				<div class="row">
+				  <input type="submit" value="Submit Changes" class="waves-effect waves-light btn orange"/>
+				</div>
 	        </form>
+		</div>
+		</main>
+		<% include ./partials/footer.ejs %>
 	</body>
 </html>

@@ -17,9 +17,9 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dwalraven21/SEI-Project2/issues"
+    "url": "https://github.com/dwalraven21/creative-logic/issues"
   },
-  "homepage": "https://github.com/dwalraven21/SEI-Project2#readme",
+  "homepage": "https://github.com/dwalraven21/creative-logic#readme",
   "dependencies": {
     "bcrypt": "^3.0.6",
     "dotenv": "^8.0.0",

@@ -1,7 +1,7 @@
 module.exports = [
 	{
         name: 'Mountain',
-        description: "Some recent experimenting. Thanks for checking it out, have a good one!",
+        description: 'Some recent experimenting. Thanks for checking it out, have a good one!',
         img: 'https://cdn.dribbble.com/users/674925/screenshots/5500850/_____2x.jpg',
         selected: false,
         built: false,
@@ -9,7 +9,7 @@ module.exports = [
     },
 	{
         name: 'Create A Workspace',
-        description: "a landing page with an email form",
+        description: 'a landing page with an email form',
         img: 'https://cdn.dribbble.com/users/674925/screenshots/5509593/___2x.png',
         selected: false,
         built: false,
@@ -17,7 +17,7 @@ module.exports = [
     },
 	{
         name: 'SEO Agency',
-        description: "This is an unused landing page design proposal for an agency, in the past they've been using a generic template and wanted to move as far away from that as possible, so went for something different.",
+        description: 'This is an unused landing page design proposal for an agency, in the past theyve been using a generic template and wanted to move as far away from that as possible, so went for something different.',
         img: 'https://cdn.dribbble.com/users/964348/screenshots/4891953/landing-page-design-agency-modern.gif',
         selected: true,
         built: true,
@@ -49,7 +49,7 @@ module.exports = [
 	},
 	{
 	    name: 'Delicious Food',
-	    description: "Delicious Food",
+	    description: 'Delicious Food',
 	    img: 'https://cdn.dribbble.com/users/674925/screenshots/4595358/197307874647470883.png',
 	    selected: false,
 	    built: false,
@@ -57,7 +57,7 @@ module.exports = [
     },
 	{
 	    name: 'GenVoice',
-	    description: "Where the new communications start",
+	    description: 'Where the new communications start',
 	    img: 'https://cdn.dribbble.com/users/674925/screenshots/5462504/__1_2x.png',
 	    selected: false,
 	    built: false,
@@ -65,7 +65,7 @@ module.exports = [
     },
 	{
 	    name: 'Discover',
-	    description: "This is one variant of the landing page I created. The client wanted a seamless segue to information about each the location of each photo presented, so this is what I came up with. ",
+	    description: 'This is one variant of the landing page I created. The client wanted a seamless segue to information about each the location of each photo presented, so this is what I came up with.',
 	    img: 'https://cdn.dribbble.com/users/1846841/screenshots/3969194/over-lay-lay7.gif',
 	    selected: false,
 	    built: false,
