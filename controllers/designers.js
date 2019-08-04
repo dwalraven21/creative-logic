@@ -22,7 +22,6 @@ designers.get('/new', (req, res) => {
 
 designers.get('/myprojects', (req, res) => {
 	Mockup.find({}, (error, allMockups) => {
-		console.log(allMockups);
 		if(req.session.currentUser.designer === true){
     	res.render('myprojects.ejs', {
 		mockups: allMockups,
@@ -50,7 +49,6 @@ designers.post('/', (req, res) => {
 
 designers.get('/', (req, res) => {
     Mockup.find({}, (error, allMockups) => {
-		console.log(allMockups);
 		if(req.session.currentUser){
 	        res.render('index.ejs', {
 			mockups: allMockups,
@@ -101,7 +99,6 @@ designers.put('/:id', (req, res)=>{
 	} else {
 		req.body.selected = false
 	}
-	console.log(req.body);
     //{new: true} tells mongoose to send the updated model into the callback
     Mockup.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedModel)=>{
         res.redirect('/designers');

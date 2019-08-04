@@ -21,13 +21,13 @@
 				<% if(mockup.selected === true){ %>
 		           <p><b>This mockup has already been selcted by a developer.</b></p>
 				   <% if(mockup.built === true){ %>
-					   <br><a href="<%=mockup.email%>" target="_blank" class="light-blue-text text-lighten-1">View Live Site</a><br><br>
+					   <br><a href="<%=mockup.liveURL%>" target="_blank" class="light-blue-text text-lighten-1">View Live Site</a><br><br>
 					   <% } else { %>
 					  <% } %>
 		        <% } else { %>
-					<%	if (currentUser.developer === true) { %>
+					<%	if (currentUser.developer === true && currentUser.username !== mockup.author) { %>
 		           <p><b>This mockup is available for use.</b></p><br>
-					<a href="mailto:<%=mockup.email%>" class="range-text text-lighten-3">Request Source Files</a><br><br>
+					<a href="mailto:<%=mockup.email%>?subject=CreativeLogic%20Source%20Files%20Request" class="range-text text-lighten-3">Request Source Files</a><br><br>
 					<% } %>
 		        <% } %>
 				<% if(currentUser.username === mockup.author){ %>

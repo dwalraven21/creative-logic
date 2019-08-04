@@ -27,17 +27,17 @@
 		  			      <span class="card-title activator grey-text text-darken-4"><%=mockups[i].name%><i class="material-icons right">more_vert</i></span>
 							  <% if(mockups[i].selected === true){ %>
 								<div class="row center">
-      							  <p class="red-text">Not Available</p>
+      							  <p class="green-text">Selected By Designer</p>
       							</div>
 								<div class="row center">
 								  <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange">View</a></p>
 								</div>
     							  <% } else { %>
 								<div class="row center">
-									<p class="green-text">Available</p>
+									<p>Not Selected Yet</p>
 								</div>
 								<div class="row center">
-	    		  			      <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange">Select</a></p>
+	    		  			      <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange">View</a></p>
 								</div>
     						  <% } %>
 		  			    </div>
@@ -46,17 +46,17 @@
 		  			      <p><%=mockups[i].description%></p>
 						  <% if(mockups[i].selected === true){ %>
 							<div class="row center">
-							  <p class="red-text">Not Available</p>
+							  <p class="green-text">Selected By Developer</p>
 							</div>
 							<div class="row center">
 							  <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange">View</a></p>
 							</div>
 							  <% } else { %>
 							<div class="row center">
-								<p class="green-text">Available</p>
+								<p>Not Selected Yet</p>
 							</div>
 							<div class="row center">
-							  <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange">Select</a></p>
+							  <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange">View</a></p>
 							</div>
 						  <% } %>
 		  			    </div>
