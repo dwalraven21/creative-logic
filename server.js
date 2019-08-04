@@ -63,6 +63,10 @@ app.get('/login', (req, res) => {
   })
 })
 
+app.get('/', (req, res) => {
+  res.redirect('/designers')
+})
+
 const userController = require('./controllers/users.js')
 app.use('/users', userController)
 

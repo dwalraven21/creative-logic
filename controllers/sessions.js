@@ -24,7 +24,7 @@ sessions.post('/', (req, res) => {
     }else {
       if(bcrypt.compareSync(req.body.password, foundUser.password)) {
         req.session.currentUser = foundUser
-        res.redirect('/login')
+        res.redirect('/designers')
       } else {
         res.send('<a href="/">wrong password</a>')
       }

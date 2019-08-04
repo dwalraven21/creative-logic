@@ -13,7 +13,7 @@
 		</header>
 	<main>
       <div class="container">
-        <h1>Log In</h1>
+        <h2 <h2 class="light-blue-text text-lighten-1">Log In</h2><br>
         <div class="row">
 			<form class="col s12" action="/sessions" method="POST">
             <div class="row">
@@ -23,14 +23,17 @@
               </div>
             </div>
             <div class="row">
-              <div class="input-field col s12">
+              <div class="input-field col s6">
                 <input id="password" type="password" class="validate" name="password" required>
                 <label for="password">Password</label>
               </div>
             </div>
+			<div class="row">
             <button class="btn waves-effect waves-light orange" type="submit" name="action">Submit
               <i class="material-icons right">send</i>
             </button>
+			<a href="/users/new" class="waves-effect waves-light btn light-blue lighten-1">Sign Up</a>
+			</div>
           </form>
         </div>
 		</main>

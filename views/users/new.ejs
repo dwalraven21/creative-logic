@@ -13,24 +13,39 @@
 		</header>
 	<main>
       <div class="container">
-        <h1>Create User</h1>
-        <div class="row">
+        <h2 <h2 class="light-blue-text text-lighten-1">Sign Up</h2><br>
           <form class="col s12" action="/users" method="POST">
             <div class="row">
               <div class="input-field col s6">
-                <input placeholder="Placeholder" id="username" type="text" class="validate" name="username" required>
+                <input id="username" type="text" class="validate" name="username" required>
                 <label for="username">User Name</label>
               </div>
             </div>
             <div class="row">
-              <div class="input-field col s12">
+              <div class="input-field col s6">
                 <input id="password" type="password" class="validate" name="password" required>
                 <label for="password">Password</label>
               </div>
             </div>
+			<div class="row">
+				<div class="input-field col s3">
+					<label>
+						<input type="checkbox" class="filled-in checkbox-orange" name="designer"/>
+						<span>Designer</span>
+					</label>
+				</div>
+				<div class="input-field col s3">
+					<label>
+						<input type="checkbox" class="filled-in checkbox-orange" name="developer"/>
+						<span>Developer</span>
+					</label>
+				</div>
+			</div><br><br>
+			<div class="row">
             <button class="btn waves-effect waves-light orange" type="submit" name="action">Submit
               <i class="material-icons right">send</i>
             </button>
+			</div>
           </form>
         </div>
 		</main>
