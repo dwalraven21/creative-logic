@@ -15,6 +15,12 @@
       <div class="container">
         <h2 <h2 class="light-blue-text text-lighten-1">Sign Up</h2><br>
           <form class="col s12" action="/users" method="POST">
+			<div class="row">
+			   <div class="input-field col s6">
+				 <input id="email" type="email" class="validate" name="email">
+				 <label for="email">Email</label>
+			   </div>
+			 </div>
             <div class="row">
               <div class="input-field col s6">
                 <input id="username" type="text" class="validate" name="username" required>
@@ -42,7 +48,7 @@
 				</div>
 			</div><br><br>
 			<div class="row">
-            <button class="btn waves-effect waves-light orange" type="submit" name="action">Submit
+            <button class="btn waves-effect waves-light light-blue lighten-1" type="submit" name="action">Submit
               <i class="material-icons right">send</i>
             </button>
 			</div>

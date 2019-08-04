@@ -29,7 +29,7 @@ users.post('/', (req, res) => {
 		} else {
 			Mockup.find({}, (error, allMockups) => {
 				res.render('index.ejs', {
-				currentUser: req.session.currentUser,
+				currentUser: req.body,
 				mockups: allMockups
 			})
 	    })
