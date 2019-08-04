@@ -8,17 +8,16 @@
 		<main>
 			<div class="container">
 				<%	if (currentUser) { %>
-					<h4 class="light-blue-text text-lighten-1">
-					Welcome, <%= currentUser.first_name %> <%= currentUser.last_name %>!
-					</h4>
-					<%	if (currentUser.designer === true) { %>
-					<p>You are viewing all mockups. Would you like to view only your submissions?</p>
-					<p><a href="/designers/myprojects" class="waves-effect waves-light btn orange">View My Projects</a></p>
-					<% } %>
+				<h4 class="light-blue-text text-lighten-1">
+				Welcome, <%= currentUser.first_name %> <%= currentUser.last_name %>!
+				</h4>
+				<p>You are viewing only your submissions. Would you like to view all mockups?</p>
+				<p><a href="/" class="waves-effect waves-light btn orange">View All Mockups</a></p>
 				<% } %>
 				<div class="row">
 				<% for(let i = 0; i < mockups.length; i++){ %>
 					<!-- create card -->
+					<% if(currentUser.username === mockup.author){ %>
 		  				<div class="col s12 m6 xl4">
 				  		<div class="card">
 						  <div class="card-image waves-effect waves-block waves-light orange">
@@ -26,24 +25,20 @@
 		  			    </div>
 		  			    <div class="card-content" >
 		  			      <span class="card-title activator grey-text text-darken-4"><%=mockups[i].name%><i class="material-icons right">more_vert</i></span>
-							  <% if(mockups[i].selected === true && currentUser.developer === true){ %>
+							  <% if(mockups[i].selected === true){ %>
 								<div class="row center">
       							  <p class="red-text">Not Available</p>
       							</div>
 								<div class="row center">
 								  <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange">View</a></p>
 								</div>
-    							  <% } else if (currentUser.developer === true){ %>
+    							  <% } else { %>
 								<div class="row center">
 									<p class="green-text">Available</p>
 								</div>
 								<div class="row center">
 	    		  			      <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange">Select</a></p>
 								</div>
-								<% } else { %>
-									<div class="row center">
-									  <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange">View</a></p>
-									</div>		
     						  <% } %>
 		  			    </div>
 		  			    <div class="card-reveal">
@@ -67,6 +62,7 @@
 		  			    </div>
 		  			  </div>
 				  	</div>
+					<% } %>
 				<% } %>
 				</div>
 			</div>

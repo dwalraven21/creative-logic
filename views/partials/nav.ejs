@@ -6,13 +6,18 @@
 		 <li><a href="/sessions/new" class="waves-effect waves-light btn orange">Log Out</a></li>
 		 <li class="white-text"><%= currentUser.username %></li>
 		 </ul>
+
 		  <ul id="nav-mobile" class="sidenav">
+			 <%	if (currentUser.designer === true) { %>
 			 <li><a href="/designers/new">Add A New Mockup</a></li>
+			 <% } %>
      		 <li><a href="/sessions/new.ejs" action='/?_method=DELETE' method="POST">Log Out</a></li>
 	      </ul>
 	      <a href="#" data-target="nav-mobile" class="sidenav-trigger dropdown-trigger btn orange" data-target='dropdown1'><i class="material-icons">menu</i></a>
 		  <ul id='dropdown1' class='dropdown-content'>
+			<%	if (currentUser.designer === true) { %>
 		    <li><a href="/designers/new">Add A New Mockup</a></li>
+			<% } %>
 		    <li><a href="/sessions/new.ejs" action='/?_method=DELETE' method="POST">Log Out</a></li>
 		  </ul>
 	  </div>

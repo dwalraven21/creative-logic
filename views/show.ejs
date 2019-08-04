@@ -6,21 +6,6 @@
 	<body>
 		<% include ./partials/nav.ejs %>
 		<main>
-		<div id="modal">
-			<div id="modal-textbox">
-				<p>To: <%=mockup.author%></p>
-					<form class="" action="" method="">
-						<div class="input-field col s12">
-							<textarea id="message" class="materialize-textarea" name="message"></textarea>
-					        <label for="message">Message</label>
-						</div>
-					</form>
-				<p>From: <%=currentUser.username%></p>
-					<div id="modal-footer">
-						<button class="modal-buttons" id="close" href="#">Close</button>
-					</div>
-			</div>
-		</div>
 		<div class="container">
 		<div class="col s12 m7">
 		  <h2 class="header light-blue-text text-lighten-1"><%=mockup.name%></h2><br>
@@ -36,12 +21,14 @@
 				<% if(mockup.selected === true){ %>
 		           <p><b>This mockup has already been selcted by a developer.</b></p>
 				   <% if(mockup.built === true){ %>
-					   <br><a href="<%=mockup.liveURL%>" target="_blank" class="light-blue-text text-lighten-1">View Live Site</a><br><br>
+					   <br><a href="<%=mockup.email%>" target="_blank" class="light-blue-text text-lighten-1">View Live Site</a><br><br>
 					   <% } else { %>
 					  <% } %>
 		        <% } else { %>
+					<%	if (currentUser.developer === true) { %>
 		           <p><b>This mockup is available for use.</b></p><br>
-					<a href="#" id="openModal"class="range-text text-lighten-3">Request Source Files</a><br><br>
+					<a href="mailto:<%=mockup.email%>?subject=CreativeLogic%20Source%20Files" class="range-text text-lighten-3">Request Source Files</a><br><br>
+					<% } %>
 		        <% } %>
 				<% if(currentUser.username === mockup.author){ %>
 					<div class="row">

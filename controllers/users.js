@@ -28,8 +28,9 @@ users.post('/', (req, res) => {
 			console.log(err);
 		} else {
 			Mockup.find({}, (error, allMockups) => {
+				req.session.currentUser = req.body
 				res.render('index.ejs', {
-				currentUser: req.body,
+				currentUser: req.session.currentUser,
 				mockups: allMockups
 			})
 	    })

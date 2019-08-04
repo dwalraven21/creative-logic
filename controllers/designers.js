@@ -12,7 +12,16 @@ designers.get('/seed', (req, res) => {
 })
 
 designers.get('/new', (req, res) => {
+	Mockup.find({}, (error, allMockups) => {
     res.render('new.ejs', {
+		currentUser: req.session.currentUser,
+		mockups: allMockups
+	});
+  });
+});
+
+designers.get('/myprojects', (req, res) => {
+    res.render('myprojects.ejs', {
 		currentUser: req.session.currentUser,
 	});
 });
@@ -83,6 +92,7 @@ designers.put('/:id', (req, res)=>{
 		req.body.selected = false
 	}
 	req.body.author = req.session.currentUser.username
+	req.body.email = req.session.currentUser.email
 	console.log(req.body);
     //{new: true} tells mongoose to send the updated model into the callback
     Mockup.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedModel)=>{
