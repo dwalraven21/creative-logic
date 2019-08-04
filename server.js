@@ -76,7 +76,11 @@ app.use('/sessions', sessionsController)
 const designersController = require('./controllers/designers.js')
 app.use('/designers', designersController)
 
+const devController = require('./controllers/developers.js')
+app.use('/developers', devController)
 
+const partialsController = require('./controllers/partials.js')
+app.use('/partials', partialsController)
 //___________________
 //Listener
 //___________________

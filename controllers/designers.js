@@ -12,7 +12,9 @@ designers.get('/seed', (req, res) => {
 })
 
 designers.get('/new', (req, res) => {
-    res.render('new.ejs');
+    res.render('new.ejs', {
+		currentUser: req.session.currentUser,
+	});
 });
 
 designers.post('/', (req, res) => {
@@ -56,7 +58,8 @@ designers.get('/:id/edit', (req, res)=>{
         res.render(
     		'edit.ejs',
     		{
-    			mockup: foundMockup
+    			mockup: foundMockup,
+				currentUser: req.session.currentUser
     		}
     	);
     });
