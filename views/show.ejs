@@ -27,7 +27,7 @@
 		        <% } else { %>
 					<%	if (currentUser.developer === true) { %>
 		           <p><b>This mockup is available for use.</b></p><br>
-					<a href="mailto:<%=mockup.email%>?subject=CreativeLogic%20Source%20Files" class="range-text text-lighten-3">Request Source Files</a><br><br>
+					<a href="mailto:<%=mockup.email%>" class="range-text text-lighten-3">Request Source Files</a><br><br>
 					<% } %>
 		        <% } %>
 				<% if(currentUser.username === mockup.author){ %>

@@ -21,20 +21,30 @@ designers.get('/new', (req, res) => {
 });
 
 designers.get('/myprojects', (req, res) => {
-    res.render('myprojects.ejs', {
+	Mockup.find({}, (error, allMockups) => {
+		console.log(allMockups);
+		if(req.session.currentUser.designer === true){
+    	res.render('myprojects.ejs', {
+		mockups: allMockups,
 		currentUser: req.session.currentUser,
-	});
+		});
+		} else {
+		res.redirect('/sessions/new');
+		}
+	})
 });
 
 designers.post('/', (req, res) => {
+	req.body.author = req.session.currentUser.username;
+	req.body.email = req.session.currentUser.email;
 	Mockup.create(req.body, () => {
-		req.body.author = req.session.currentUser.username
-		// I want to add a way for the users username to automatically
-		//be added to the author key
-		//this didn't work, but I'm too tired to figure out why right now
 		console.log(req.body);
-		res.redirect('/designers', {
+		Mockup.find({}, (error, allMockups) => {
+		res.render('myprojects.ejs', {
+			currentUser: req.session.currentUser,
+			mockups: allMockups
 		});
+	  });
 	})
 })
 
@@ -91,8 +101,6 @@ designers.put('/:id', (req, res)=>{
 	} else {
 		req.body.selected = false
 	}
-	req.body.author = req.session.currentUser.username
-	req.body.email = req.session.currentUser.email
 	console.log(req.body);
     //{new: true} tells mongoose to send the updated model into the callback
     Mockup.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedModel)=>{
