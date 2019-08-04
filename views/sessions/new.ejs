@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/head.ejs %>
+  </head>
+    <body>
+		<header>
+			<nav class="light-blue lighten-1" role="navigation">
+			  <div class="nav-wrapper container"><a id="logo-container" href="/designers" class="brand-logo"><img src="/images/creativelogo.png" width="300px" alt="CreativeLogic"></a>
+				  </ul>
+			  </div>
+			</nav>
+		</header>
+	<main>
+      <div class="container">
+        <h1>Log In</h1>
+        <div class="row">
+			<form class="col s12" action="/sessions" method="POST">
+            <div class="row">
+              <div class="input-field col s6">
+                <input placeholder="Placeholder" id="username" type="text" class="validate" name="username" required>
+                <label for="username">User Name</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="password" type="password" class="validate" name="password" required>
+                <label for="password">Password</label>
+              </div>
+            </div>
+            <button class="btn waves-effect waves-light orange" type="submit" name="action">Submit
+              <i class="material-icons right">send</i>
+            </button>
+          </form>
+        </div>
+		</main>
+		<% include ../partials/footer.ejs %>
+    </body>
+</html>
