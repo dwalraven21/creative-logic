@@ -10,7 +10,7 @@ sessions.get('/new', (req, res) => {
 
 sessions.delete('/', (req, res)=>{
     req.session.destroy(() => {
-        res.redirect('/login')
+        res.redirect('sessions/new.ejs')
     })
 })
 

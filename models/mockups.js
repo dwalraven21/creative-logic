@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 
 const mockupSchema = new mongoose.Schema({
   name: {type: String, required: true },
+  author: String,
   description: String,
   img: String,
   selected: {

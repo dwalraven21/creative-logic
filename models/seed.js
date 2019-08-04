@@ -1,6 +1,7 @@
 module.exports = [
 	{
         name: 'Mountain',
+		author: 'dwalraven21',
         description: 'Some recent experimenting. Thanks for checking it out, have a good one!',
         img: 'https://cdn.dribbble.com/users/674925/screenshots/5500850/_____2x.jpg',
         selected: false,
@@ -9,6 +10,7 @@ module.exports = [
     },
 	{
         name: 'Create A Workspace',
+		author: 'dwalraven21',
         description: 'a landing page with an email form',
         img: 'https://cdn.dribbble.com/users/674925/screenshots/5509593/___2x.png',
         selected: false,
@@ -17,6 +19,7 @@ module.exports = [
     },
 	{
         name: 'SEO Agency',
+		author: 'dwalraven21',
         description: 'This is an unused landing page design proposal for an agency, in the past theyve been using a generic template and wanted to move as far away from that as possible, so went for something different.',
         img: 'https://cdn.dribbble.com/users/964348/screenshots/4891953/landing-page-design-agency-modern.gif',
         selected: true,
@@ -25,6 +28,7 @@ module.exports = [
     },
 	{
 	    name: 'MAROC',
+		author: 'dwalraven21',
 	    description: 'Very simple animation and the gif is a bit rough because it is only a concept so there are a few glitches that we would have cleaned up if we moved forward with it.',
 	    img: 'https://cdn.dribbble.com/users/1846841/screenshots/4952023/maroc-4.gif',
 	    selected: false,
@@ -33,6 +37,7 @@ module.exports = [
 	},
 	{
 		name: 'BIO LAB',
+		author: 'dwalraven21',
 		description: 'Hope you like my mockup.',
 		img: 'https://cdn.dribbble.com/users/674925/screenshots/5794929/lab_2x.png',
 		selected: true,
@@ -41,6 +46,7 @@ module.exports = [
 	},
 	{
 		name: '404 Page',
+		author: 'dwalraven21',
 		description: 'An aquatic themed 404 page. Not Found? Try to look deep in the water!',
 		img: 'https://cdn.dribbble.com/users/2446071/screenshots/6903453/404.gif',
 		selected: true,
@@ -49,6 +55,7 @@ module.exports = [
 	},
 	{
 	    name: 'Delicious Food',
+		author: 'dwalraven21',
 	    description: 'Delicious Food',
 	    img: 'https://cdn.dribbble.com/users/674925/screenshots/4595358/197307874647470883.png',
 	    selected: false,
@@ -57,6 +64,7 @@ module.exports = [
     },
 	{
 	    name: 'GenVoice',
+		author: 'dwalraven21',
 	    description: 'Where the new communications start',
 	    img: 'https://cdn.dribbble.com/users/674925/screenshots/5462504/__1_2x.png',
 	    selected: false,
@@ -65,6 +73,7 @@ module.exports = [
     },
 	{
 	    name: 'Discover',
+		author: 'dwalraven21',
 	    description: 'This is one variant of the landing page I created. The client wanted a seamless segue to information about each the location of each photo presented, so this is what I came up with.',
 	    img: 'https://cdn.dribbble.com/users/1846841/screenshots/3969194/over-lay-lay7.gif',
 	    selected: false,

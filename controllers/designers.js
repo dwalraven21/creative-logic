@@ -39,7 +39,8 @@ designers.get('/', (req, res) => {
 designers.get('/:id/show', (req, res)=>{
     Mockup.findById(req.params.id, (err, foundMockup)=>{
         res.render('show.ejs', {
-            mockup: foundMockup
+            mockup: foundMockup,
+			currentUser: req.session.currentUser,
         });
     });
 });
