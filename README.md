@@ -8,19 +8,6 @@ link to live site: https://creative-logic.herokuapp.com
 
 As a developer, I really enjoy building web pages based on pre-existing mockups, but I wish I had more mockups available to me. I am sure many designers are in the same boat. They have a great website design to include in a portfolio, but wouldn't it be great if future clients could see what the live version might look like?
 
-## Deployment
-
-* Deployed with Heroku and MongoDB Atlas
-
-## Tech/frameworks used
-
-* Node.js
-* MongoDB / Mongoose
-* Express / EJS
-* Materialize (CSS framework)
-* bcrypt (password hashing function)
-* Using RESTful Routs and full CRUD
-
 ## Usage
 
 When a user first navigates to CreativeLogic they will be redirected to the login/sign-up page. Upon registration they can select if they are a designer, developer or both (or neither). They will then be taken to a view of all the available mockups. Here the experience will be slightly different for designers vs. developers.
@@ -45,13 +32,99 @@ I also wanted to take some information from the user (email and username) and st
 2. To display a special page for designers to view only their own projects
 3. To allow developers to contact the designer for any particular mockup and request source files and permission to build the mockup.
 
+Here us the Post/Create Route I used to create a new user:
+
+```JavaScript
+users.post('/', (req, res) => {
+	req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
+	if (req.body.designer === "on") {
+		req.body.designer = true
+	} else {
+		req.body.designer = false
+	}
+	if (req.body.developer === "on") {
+		req.body.developer = true
+	} else {
+		req.body.developer = false
+	}
+
+	User.create(req.body, (err, createUser) => {
+		if (err) {
+			console.log(err);
+		} else {
+			Mockup.find({}, (error, allMockups) => {
+				req.session.currentUser = req.body
+				res.render('index.ejs', {
+				currentUser: req.session.currentUser,
+				mockups: allMockups
+			})
+	    })
+	  }
+	})
+})
+```
+And here is how I grabbed that username/email info from them when they created a mockup:
+
+```JavaScript
+designers.post('/', (req, res) => {
+	req.body.author = req.session.currentUser.username;
+	req.body.email = req.session.currentUser.email;
+	Mockup.create(req.body, () => {
+		console.log(req.body);
+		Mockup.find({}, (error, allMockups) => {
+		res.render('myprojects.ejs', {
+			currentUser: req.session.currentUser,
+			mockups: allMockups
+		});
+	  });
+	})
+})
+```
+
+Finally, all of this is meaningless if I don't utilize some logic in my ejs files to check the username and use the email:
+
+```JavaScript
+<%	if (currentUser.developer === true && currentUser.username !== mockup.author) { %>
+    <p><b>This mockup is available for use.</b></p><br>
+	<a href="mailto:<%=mockup.email%>?subject=CreativeLogic%20Source%20Files%20Request" class="range-text text-lighten-3">Request Source Files</a><br><br>
+<% } %>
+```
+
+Here is some more logic to display Delete and Edit buttons, only for the mockup creator or "author"
+
+```JavaScript
+<% if(currentUser.username === mockup.author){ %>
+	<div class="row">
+		<div class="col">
+			<form action='/designers/<%=mockup.id%>?_method=DELETE' method="POST">
+			<input type="submit" value="DELETE" class="waves-effect waves-light btn orange"/>
+			</form>
+		</div>
+		<div class="col">
+			<a href="/designers/<%=mockup.id%>/edit" class="waves-effect waves-light btn orange">Edit</a>
+		</div>
+	</div>
+<% } %>
+```
+
 ## Improvements
 
 One improvement I would like to make in the future is to have an additional view for users who are not signed in or registered. I always hate it when a website makes you sign up before you can see anything. I would like users to be able to still interact with the site (in a limited way) before committing to signing up.
 
-Another improvement would be to allow messaging between the designers and developers within the app, instead of over email. There could also be a button that the designer could click when the developer requests source files, that would simultaneously allow the developer to download source files, mark the project as being built and put the project in the developer's project section. Currently the designers can view their mockups, but developers can't view ones they are developing. This would require another key-object pair in my mockups schema for the developer's username so I can allow that user access to those elements.
+Another improvement would be to allow messaging between the designers and developers within the app, instead of over email. There could also be a button that the designer could click when the developer requests source files, that would simultaneously allow the developer to download source files, mark the project as "currently being built" and put the project in the developer's project section. Currently the designers can view their mockups, but developers can't view ones they are developing. This would require another key-object pair in my mockups schema for the developer's username so I can allow that user access to those elements.
 
-## Code Examples
+## Deployment
+
+* Deployed with Heroku and MongoDB Atlas
+
+## Tech/frameworks used
+
+* Node.js
+* MongoDB / Mongoose
+* Express / EJS
+* Materialize (CSS framework)
+* bcrypt (password hashing function)
+* Using RESTful Routs and full CRUD
 
 ## Author
 
@@ -59,4 +132,4 @@ Another improvement would be to allow messaging between the designers and develo
 
 ## Acknowledgments
 
-* Inspiration and images used in prototype were taken from <a href="www.dribbble.com">Dribble</a>.
+* Inspiration and images used in prototype were taken from <a href="www.dribbble.com">Dribbble</a>.
