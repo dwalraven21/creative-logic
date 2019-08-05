@@ -16,7 +16,7 @@ Designers will be able to add new mockups, view all the mockups they have submit
 
 Developers will be able to see which mockups are available for use and which have already been selected by another developer. They can click "Select" on available mockups to view more information and "Request Source Files" to email the designer directly. I would like to eventually move the messaging feature to be hosted within the app, instead of over email.
 
-## Features
+## Just For Fun
 
 In the process of testing this app and creating numerous fake accounts with designer/developer attributes, I ran into a very annoying problem of continuously entering incorrect usernames and passwords. I decided to take this issue and make it more fun by adding some special pages for these login errors.
 
