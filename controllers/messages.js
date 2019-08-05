@@ -54,4 +54,20 @@ messages.get('/', (req, res) => {
 	})
 })
 
+// allow user to view all messages
+// will use logic on ejs page to make sure they can only view messages that they are the sender or reciever of
+messages.get('/sent', (req, res) => {
+	Message.find({}, (error, allMessages) => {
+		if (req.session.currentUser){
+			res.render('messages/sent.ejs', {
+				messages: allMessages,
+				currentUser: req.session.currentUser,
+			})
+		// if they are not signed in they will return to sign in page
+		} else {
+			res.redirect('/sessions/new');
+		}
+	})
+})
+
 module.exports = messages

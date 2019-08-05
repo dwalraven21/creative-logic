@@ -7,11 +7,11 @@
 		<% include ../partials/nav.ejs %>
 		<main>
 		<div class="container">
-		  <h2 class="header light-blue-text text-lighten-1">Inbox</h2>
-		  <p><a href="/messages/sent" class="waves-effect waves-light btn orange darken-2">View Outgoing Messages</a></p>
+		  <h2 class="header light-blue-text text-lighten-1">Outgoing Messages</h2>
+		  <p><a href="/messages" class="waves-effect waves-light btn orange darken-2">View Inbox</a></p>
 		  <div class="row">
 			<% for(let i = 0; i < messages.length; i++){ %>
-				<% if(currentUser.username === messages[i].recipient) { %>
+				<% if(currentUser.username === messages[i].sender){ %>
 				  <div class="row">
 				    <div class="col s12 m6">
 				      <div class="card light-blue lighten-3">
@@ -20,10 +20,6 @@
 				          <p><%= messages[i].message %></p><br>
 						  <p class="card-title">From: <%= messages[i].sender %></p>
 				        </div>
-							<div class="card-action">
-					          <a href="#"  class="waves-effect waves-light btn green">Accept</a>
-					          <a href="#"  class="waves-effect waves-light btn red">Reject</a>
-					        </div>
 				      </div>
 				    </div>
 				  </div>
