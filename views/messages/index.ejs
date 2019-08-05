@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+	<% include ../partials/head.ejs %>
+	</head>
+	<body>
+		<% include ../partials/nav.ejs %>
+		<main>
+		<div class="container">
+		  <h2 class="header light-blue-text text-lighten-1">Messages</h2><br>
+		  <div class="row">
+			<% for(let i = 0; i < messages.length; i++){ %>
+				<% if((currentUser.username === messages[i].sender) || (currentUser.username === messages[i].recipient)){ %>
+				  <div class="row">
+				    <div class="col s12 m6">
+				      <div class="card blue-grey darken-1">
+				        <div class="card-content white-text">
+				          <p class="card-title">To: <%= messages[i].recipient %></p>
+				          <p><%= messages[i].message %></p>
+						  <p class="card-title">From: <%= messages[i].sender %></p>
+				        </div>
+						<% if(currentUser.username === messages[i].recipient) { %>
+							<div class="card-action">
+					          <a href="#">Accept</a>
+					          <a href="#">Reject</a>
+					        </div>
+						<% } %>
+				      </div>
+				    </div>
+				  </div>
+				<% } %>
+			<% } %>
+		</div>
+	</main>
+	<% include ../partials/footer.ejs %>
+	</body>
+</html>

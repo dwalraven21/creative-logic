@@ -73,6 +73,9 @@ app.use('/users', userController)
 const sessionsController = require('./controllers/sessions.js')
 app.use('/sessions', sessionsController)
 
+const messagesController = require('./controllers/messages.js')
+app.use('/messages', messagesController)
+
 const designersController = require('./controllers/designers.js')
 app.use('/designers', designersController)
 
