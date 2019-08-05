@@ -8,13 +8,15 @@
 		<main>
 			<div class="container">
 				<h2 class="header light-blue-text text-lighten-1">New Message</h2>
-				<h4 class="header light-blue-text text-lighten-1">To: <%= mockup.author %></h4>
-					<form class="col s12 light-blue-text text-lighten-1" action="/messages" method="POST">
-						<div class="input-field col s12">
-							<textarea id="textarea2" class="materialize-textarea" name="message"></textarea>
-					        <label for="textarea2">Description</label>
+				<h5 class="light-blue-text text-lighten-1">To:</h5>
+				<h5><%= mockup.author %></h5>
+					<form class="col s12 light-blue-text text-lighten-1" action="/messages/<%=mockup.id%>/new" method="POST">
+						<div class="input-field col s12 m6 l4">
+							<i class="material-icons prefix">mode_edit</i><textarea id="textarea2" class="materialize-textarea" name="message"></textarea>
+					        <label for="textarea2">Message</label>
 						</div>
-				<h4 class="header light-blue-text text-lighten-1">From: <%= currentUser.username %></h4>
+				<h5 class="light-blue-text text-lighten-1">From:</h5>
+				<h5 class="black-text"><%= currentUser.username %></h5><br><br>
 					    <div class="row">
 					      <input type="submit" value="Send Request" class="waves-effect waves-light btn orange"/>
 					    </div>

@@ -13,7 +13,7 @@
 					</h4>
 					<%	if (currentUser.designer === true) { %>
 					<p>You are viewing all mockups. Would you like to view only your submissions?</p>
-					<p><a href="/designers/myprojects" class="waves-effect waves-light btn orange">View My Projects</a></p>
+					<p><a href="/designers/myprojects" class="waves-effect waves-light btn orange darken-2">View My Projects</a></p>
 					<% } %>
 				<% } %>
 				<div class="row">
@@ -21,7 +21,7 @@
 					<!-- create card -->
 		  				<div class="col s12 m6 xl4">
 				  		<div class="card">
-						  <div class="card-image waves-light orange">
+						  <div class="card-image waves-light orange darken-2">
 		  			      <img class="activator" src="<%=mockups[i].img%>">
 		  			    </div>
 		  			    <div class="card-content" >
@@ -31,18 +31,18 @@
       							  <p class="red-text">Not Available</p>
       							</div>
 								<div class="row center">
-								  <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange">View</a></p>
+								  <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange darken-2">View</a></p>
 								</div>
     							  <% } else if (currentUser.developer === true){ %>
 								<div class="row center">
 									<p class="green-text">Available</p>
 								</div>
 								<div class="row center">
-	    		  			      <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange">Select</a></p>
+	    		  			      <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange darken-2">Select</a></p>
 								</div>
 								<% } else { %>
 									<div class="row center">
-									  <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange">View</a></p>
+									  <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange darken-2">View</a></p>
 									</div>
     						  <% } %>
 		  			    </div>
@@ -54,18 +54,18 @@
 							  <p class="red-text">Not Available</p>
 							</div>
 							<div class="row center">
-							  <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange">View</a></p>
+							  <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange darken-2">View</a></p>
 							</div>
 							  <% } else if (currentUser.developer === true){ %>
 							<div class="row center">
 								<p class="green-text">Available</p>
 							</div>
 							<div class="row center">
-							  <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange">Select</a></p>
+							  <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange darken-2">Select</a></p>
 							</div>
 							<% } else { %>
 								<div class="row center">
-								  <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange">View</a></p>
+								  <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange darken-2">View</a></p>
 								</div>
 						  <% } %>
 		  			    </div>

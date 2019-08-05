@@ -32,9 +32,7 @@ messages.post('/:id/new', (req, res) => {
 		Message.create(req.body, () => {
 			console.log(req.body);
 			Message.find({}, (error, allMessages) => {
-				res.render('messages/index.ejs', {
-					messages: allMessages
-				})
+				res.redirect('/messages')
 			})
 		})
 	})
