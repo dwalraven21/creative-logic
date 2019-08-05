@@ -33,7 +33,7 @@ Developers will be able to see which mockups are available for use and which hav
 
 In the process of testing this app and creating numerous fake accounts with designer/developer attributes, I ran into a very annoying problem of continuously entering incorrect usernames and passwords. I decided to take this issue and make it more fun by adding some special pages for these login errors.
 
-![Screencast](https://recordit.co/IzLXGK7SB9)
+![Screencast](http://g.recordit.co/IzLXGK7SB9.gif)
 
 ## Challenges
 
