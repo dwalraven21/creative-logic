@@ -70,7 +70,6 @@ designers.post('/', (req, res) => {
 	req.body.author = req.session.currentUser.username;
 	req.body.email = req.session.currentUser.email;
 	Mockup.create(req.body, () => {
-		console.log(req.body);
 		Mockup.find({}, (error, allMockups) => {
 		res.render('myprojects.ejs', {
 			currentUser: req.session.currentUser,
@@ -83,7 +82,7 @@ designers.post('/', (req, res) => {
 
 Finally, all of this is meaningless if I don't utilize some logic in my ejs files to check the username and use the email:
 
-```JavaScript
+```ejs
 <%	if (currentUser.developer === true && currentUser.username !== mockup.author) { %>
     <p><b>This mockup is available for use.</b></p><br>
 	<a href="mailto:<%=mockup.email%>?subject=CreativeLogic%20Source%20Files%20Request" class="range-text text-lighten-3">Request Source Files</a><br><br>
@@ -92,7 +91,7 @@ Finally, all of this is meaningless if I don't utilize some logic in my ejs file
 
 Here is some more logic to display Delete and Edit buttons, only for the mockup creator or "author"
 
-```JavaScript
+```ejs
 <% if(currentUser.username === mockup.author){ %>
 	<div class="row">
 		<div class="col">
