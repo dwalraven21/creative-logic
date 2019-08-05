@@ -123,7 +123,7 @@ Another improvement would be to allow messaging between the designers and develo
 * Express / EJS
 * Materialize (CSS framework)
 * bcrypt (password hashing function)
-* Using RESTful Routs and full CRUD
+* Using RESTful Routes and full CRUD
 
 ## Author
 
