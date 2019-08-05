@@ -6,7 +6,7 @@ const User = require('../models/users.js')
 
 partials.get('/', (req, res) => {
 	if(req.session.currentUser){
-        res.render('index.ejs', {
+        res.render('nav.ejs', {
 		mockups: allMockups,
 		currentUser: req.session.currentUser,
     })
