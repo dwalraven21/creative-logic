@@ -16,7 +16,6 @@ When a user first navigates to CreativeLogic they will be redirected to the logi
 
 Designers will be able to add new mockups, view all the mockups they have submitted on a separate page, and edit or delete their own mockups. (Designers can ONLY edit or delete their own projects.)
 
-![Screencast](http://g.recordit.co/vtao9yhyBP.gif)
 
 ### Developers
 
