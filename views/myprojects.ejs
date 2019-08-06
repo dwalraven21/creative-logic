@@ -11,8 +11,8 @@
 				<h4 class="light-blue-text text-lighten-1">
 				Welcome, <%= currentUser.first_name %> <%= currentUser.last_name %>!
 				</h4>
-				<p>You are viewing only your submissions. Would you like to view all mockups?</p>
-				<p><a href="/" class="waves-effect waves-light btn orange">View All Mockups</a></p>
+				<p>You are viewing only your projects. Would you like to view all mockups?</p>
+				<p><a href="/" class="waves-effect waves-light btn orange darken-2">View All Mockups</a></p>
 				<% } %>
 				<div class="row">
 				<% for(let i = 0; i < mockups.length; i++){ %>
@@ -27,7 +27,7 @@
 		  			      <span class="card-title activator grey-text text-darken-4"><%=mockups[i].name%><i class="material-icons right">more_vert</i></span>
 							  <% if(currentUser.username === mockups[i].author && mockups[i].selected === true){ %>
 								<div class="row center">
-      							  <p class="green-text">Selected By Designer</p>
+      							  <p class="green-text">Selected</p>
       							</div>
 								<div class="row center">
 								  <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange darken-2">View</a></p>
@@ -41,6 +41,9 @@
 								</div>
     						  <% }  else { %>
 								  <div class="row center">
+									  <p>You are the developer</p>
+								 </div>
+								  <div class="row center">
 									<p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange darken-2">View</a></p>
 								  </div>
 							  <% } %>
@@ -50,7 +53,7 @@
 		  			      <p><%=mockups[i].description%></p>
 						  <% if(mockups[i].selected === true){ %>
 							<div class="row center">
-							  <p class="green-text">Selected By Developer</p>
+							  <p class="green-text">Selected</p>
 							</div>
 							<div class="row center">
 							  <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange">View</a></p>

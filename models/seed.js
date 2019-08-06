@@ -42,7 +42,7 @@ module.exports = [
 	},
 	{
 		name: 'BIO LAB',
-		author: 'dwalraven21',
+		author: 'dmclean21',
 		email: 'dwalraven21@gamil.com',
 		description: 'Hope you like my mockup.',
 		img: 'https://cdn.dribbble.com/users/674925/screenshots/5794929/lab_2x.png',
