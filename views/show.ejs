@@ -18,17 +18,24 @@
 				<p><%=mockup.description%></p><br><br>
 				<p>Designer: <%=mockup.author%></p><br>
 				<div class="card-action">
-				<% if(mockup.selected === true){ %>
+				<% if((mockup.selected === true) && (mockup.developer === currentUser.username)){ %>
+					<div class="col">
+						<a href="/designers/<%=mockup.id%>/edit" class="waves-effect waves-light btn orange darken-2">Edit</a>
+					</div>
+					<% if(mockup.built === true){ %>
+ 					   <br><a href="<%=mockup.liveURL%>" target="_blank" class="light-blue-text text-lighten-1">View Live Site</a><br><br>
+ 					   <% } else { %>
+ 					  <% } %>
+				<% } else if (mockup.selected === true){ %>
 		           <p><b>This mockup has already been selcted by a developer.</b></p>
 				   <% if(mockup.built === true){ %>
 					   <br><a href="<%=mockup.liveURL%>" target="_blank" class="light-blue-text text-lighten-1">View Live Site</a><br><br>
 					   <% } else { %>
 					  <% } %>
-		        <% } else { %>
-					<%	if (currentUser.developer === true && currentUser.username !== mockup.author) { %>
+		        <% } else if (currentUser.developer === true && currentUser.username !== mockup.author) { %>
 		           <p><b>This mockup is available for use.</b></p><br>
 					<a href="/messages/<%=mockup.id%>/new" class="range-text text-lighten-3">Request Source Files</a><br><br>
-					<% } %>
+					<% } else { %>
 		        <% } %>
 				<% if(currentUser.username === mockup.author){ %>
 					<div class="row">

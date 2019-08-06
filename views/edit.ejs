@@ -8,20 +8,34 @@
 	<main>
 		<div class="container">
 			<h2 class="header light-blue-text text-lighten-1">Edit<h2>
+
 			<form class="col s12 light-blue-text text-lighten-1" action="/designers/<%=mockup.id%>?_method=PUT" method="POST">
 	        <!--  NOTE: the form is pre-populated with values for the server-->
+			<% if (currentUser.username === mockup.author) { %>
 				<div class="input-field col s12">
 					<input id="project_name" type="text" name="name" value="<%=mockup.name%>">
 					<label for="project_name">Project Name</label>
 				</div>
+			<% } else { %>
+				<p><%=mockup.name%></p>
+			<% } %>
+			<% if (currentUser.username === mockup.author) { %>
 				<div class="input-field col s12">
-					<textarea id="textarea1" class="materialize-textarea" name="description">"<%=mockup.description%>"</textarea>
+					<textarea id="textarea1" class="materialize-textarea" name="description"><%=mockup.description%></textarea>
 					<label for="textarea1">Description</label>
 				</div>
+			<% } else { %>
+
+			<% } %>
+			<% if (currentUser.username === mockup.author) { %>
 				<div class="input-field col s12">
 				  <input id="image_url" type="text" name="img" value="<%=mockup.img%>">
 				  <label for="image_url">Image URL</label>
 				</div>
+			<% } else { %>
+				
+			<% } %>
+			<% if ((currentUser.username === mockup.author)||(currentUser.username === mockup.developer)) { %>
 				<div class="row">
 					<div class="input-field col s6">
 						<label>
@@ -52,6 +66,7 @@
 				  <input type="submit" value="Submit Changes" class="waves-effect waves-light btn orange darken-2"/>
 				</div>
 	        </form>
+			<% } %>
 		</div>
 		</main>
 		<% include ./partials/footer.ejs %>

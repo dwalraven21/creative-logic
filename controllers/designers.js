@@ -30,7 +30,7 @@ designers.get('/new', (req, res) => {
 designers.get('/myprojects', (req, res) => {
 	Mockup.find({}, (error, allMockups) => {
 		// If they are a designer
-		if(req.session.currentUser.designer === true){
+		if(req.session.currentUser.designer === true || req.session.currentUser.developer === true ){
 		// Will render the page with the key-value pairs mockups and currentUser
     	res.render('myprojects.ejs', {
 		// We need these keys to display all mockups belonging to the current user.

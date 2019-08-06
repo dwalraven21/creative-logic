@@ -17,29 +17,33 @@
 				<div class="row">
 				<% for(let i = 0; i < mockups.length; i++){ %>
 					<!-- create card -->
-					<% if(currentUser.username === mockups[i].author){ %>
+					<% if(currentUser.username === mockups[i].author || currentUser.username === mockups[i].developer){ %>
 		  				<div class="col s12 m6 xl4">
 				  		<div class="card">
-						  <div class="card-image waves-effect waves-block waves-light orange">
+						  <div class="card-image waves-effect waves-block waves-light orange darken-2">
 		  			      <img class="activator" src="<%=mockups[i].img%>">
 		  			    </div>
 		  			    <div class="card-content" >
 		  			      <span class="card-title activator grey-text text-darken-4"><%=mockups[i].name%><i class="material-icons right">more_vert</i></span>
-							  <% if(mockups[i].selected === true){ %>
+							  <% if(currentUser.username === mockups[i].author && mockups[i].selected === true){ %>
 								<div class="row center">
       							  <p class="green-text">Selected By Designer</p>
       							</div>
 								<div class="row center">
-								  <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange">View</a></p>
+								  <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange darken-2">View</a></p>
 								</div>
-    							  <% } else { %>
+    							  <% } else if (currentUser.username === mockups[i].author) { %>
 								<div class="row center">
 									<p>Not Selected Yet</p>
 								</div>
 								<div class="row center">
-	    		  			      <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange">View</a></p>
+	    		  			      <p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange darken-2">View</a></p>
 								</div>
-    						  <% } %>
+    						  <% }  else { %>
+								  <div class="row center">
+									<p><a href="/designers/<%=mockups[i].id%>/show" class="waves-effect waves-light btn orange darken-2">View</a></p>
+								  </div>
+							  <% } %>
 		  			    </div>
 		  			    <div class="card-reveal">
 		  			      <span class="card-title grey-text text-darken-4"><%=mockups[i].name%><i class="material-icons right">close</i></span>

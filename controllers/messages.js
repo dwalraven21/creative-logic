@@ -126,7 +126,6 @@ messages.put('/:id/accept', (req, res) => {
 			console.log(error);
 			// We are updating the mockup with new info
 			Mockup.findByIdAndUpdate(newMessage.mockup, req.body, {new: true}, (err, updatedModel)=>{
-				console.log(updatedModel);
 				// That message sender is now the developer for the mockup
 				updatedModel.developer = newMessage.sender;
 				// And selected is now true

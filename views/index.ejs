@@ -11,7 +11,7 @@
 					<h4 class="light-blue-text text-lighten-1">
 					Welcome, <%= currentUser.first_name %> <%= currentUser.last_name %>!
 					</h4>
-					<%	if (currentUser.designer === true) { %>
+					<%	if (currentUser.designer === true || currentUser.developer === true) { %>
 					<p>You are viewing all mockups. Would you like to view only your submissions?</p>
 					<p><a href="/designers/myprojects" class="waves-effect waves-light btn orange darken-2">View My Projects</a></p>
 					<% } %>
