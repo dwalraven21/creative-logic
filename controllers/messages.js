@@ -144,32 +144,19 @@ messages.put('/:id/accept', (req, res) => {
 	// Mockup.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedMessage)=>{
 	//
 	// 	console.log(updatedMessage);
-
-		Message.create(req.body, (error, newMessage) => {
-
-			console.log(newMessage);
-			console.log(error);
-			// We are updating the mockup with new info
-			Mockup.findByIdAndUpdate(newMessage.mockup, req.body, {new: true}, (err, updatedModel)=>{
-				// That message sender is now the developer for the mockup
-				updatedModel.developer = newMessage.sender;
-				// And selected is now true
-				updatedModel.selected = true;
-
-				console.log(updatedModel);
-				Mockup.find({}, (error, allMockups) => {
-					Message.find({}, (error, allMessages) => {
-						if (req.session.currentUser){
-							// Send user back to messages
-							res.redirect('/messages')
-						} else {
-							res.redirect('/sessions/new');
-						}
-					})
-				})
-			})
+	Message.create(req.body, (error, newMessage) => {
+		console.log(newMessage);
+		console.log(error);
+		// We are updating the mockup with new info
+		Mockup.findByIdAndUpdate(newMessage.mockup, req.body, {new: true}, (err, updatedModel)=>{
+					if (req.session.currentUser){
+						// Send user back to messages
+						res.redirect('/messages')
+					} else {
+						res.redirect('/sessions/new');
+					}
 		})
-	// })
+	})
 })
 
 

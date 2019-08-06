@@ -29,6 +29,7 @@ designers.get('/new', (req, res) => {
 // When a designer clicks to view their own projects
 designers.get('/myprojects', (req, res) => {
 	Mockup.find({}, (error, allMockups) => {
+		console.log(allMockups);
 		// If they are a designer
 		if(req.session.currentUser.designer === true || req.session.currentUser.developer === true ){
 		// Will render the page with the key-value pairs mockups and currentUser
@@ -61,7 +62,9 @@ designers.post('/', (req, res) => {
 
 // When a designer views the index page (or all mockups)
 designers.get('/', (req, res) => {
+	console.log(req);
     Mockup.find({}, (error, allMockups) => {
+		console.log(allMockups);
 		// if they are signed in
 		if(req.session.currentUser){
 	        res.render('index.ejs', {
