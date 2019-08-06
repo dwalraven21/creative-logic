@@ -14,11 +14,14 @@
 				<% if(currentUser.username === messages[i].sender){ %>
 				  <div class="row">
 				    <div class="col s12 m6">
-				      <div class="card light-blue lighten-3">
+				      <div class="card light-blue lighten-4">
 				        <div class="card-content black-text">
 				          <p class="card-title">To: <%= messages[i].recipient %></p><br>
 				          <p><%= messages[i].message %></p><br>
-						  <p class="card-title">From: <%= messages[i].sender %></p>
+						  <p class="card-title">From: <%= messages[i].sender %></p><br>
+						  <form action='/messages/sent/<%=messages[i].id%>?_method=DELETE' method="POST">
+						  <input type="submit" value="DELETE" class="waves-effect waves-light btn red">
+						  </form>
 				        </div>
 				      </div>
 				    </div>

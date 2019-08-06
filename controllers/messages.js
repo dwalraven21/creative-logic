@@ -4,6 +4,8 @@ const Mockup = require('../models/mockups.js')
 const User = require('../models/users.js')
 const Message = require('../models/messages.js')
 
+
+// NEW - GET
 // When a user clicks to add a new message
 // They will be taken to form page to submit the message
 messages.get('/:id/new', (req, res) => {
@@ -21,6 +23,7 @@ messages.get('/:id/new', (req, res) => {
 	})
 })
 
+// NEW - GET
 // When a user clicks to accept a developers request
 // They will be taken to form page to submit the message
 messages.get('/:id/accept', (req, res) => {
@@ -40,6 +43,7 @@ messages.get('/:id/accept', (req, res) => {
 	})
 })
 
+// CREATE - POST
 // When a user sends the message (submits the form)
 messages.post('/:id/new', (req, res) => {
 	Mockup.findById(req.params.id, (err, foundMockup)=>{
@@ -59,7 +63,7 @@ messages.post('/:id/new', (req, res) => {
 	})
 })
 
-
+// INDEX - GET
 // allow user to view recieved messages
 // will use logic on ejs page to make sure they can only view messages that they are the sender or reciever of
 messages.get('/', (req, res) => {
@@ -76,6 +80,7 @@ messages.get('/', (req, res) => {
 	})
 })
 
+// SHOW - GET
 // allow user to view sent messages
 // will use logic on ejs page to make sure they can only view messages that they are the sender or reciever of
 messages.get('/sent', (req, res) => {
@@ -92,6 +97,7 @@ messages.get('/sent', (req, res) => {
 	})
 })
 
+// DESTOY - DELETE
 // Allows the user to delete a message and redirects them to the inbox
 messages.delete('/:id', (req, res)=>{
     Message.findByIdAndRemove(req.params.id, (err, data)=>{
@@ -99,6 +105,16 @@ messages.delete('/:id', (req, res)=>{
     });
 });
 
+// DESTOY - DELETE
+// Allows the user to delete a message and redirects them to the inbox
+messages.delete('/sent/:id', (req, res)=>{
+    Message.findByIdAndRemove(req.params.id, (err, data)=>{
+        res.redirect('/messages/sent')
+    });
+});
+
+
+// UPDATE - PUT
 // When a user clicks Accept and Reply (submits the form)
 // Dev gets a reply message including source files
 // Note: this is the Message id, not the Mockup id
