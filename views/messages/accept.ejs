@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<% include ../partials/head.ejs %>
+	</head>
+	<body>
+		<% include ../partials/nav.ejs %>
+		<main>
+			<div class="container">
+				<h2 class="header light-blue-text text-lighten-1">Accept and Reply</h2>
+				<h5 class="light-blue-text text-lighten-1">To:</h5>
+				<h5><%= message.sender%></h5>
+					<form class="col s12 light-blue-text text-lighten-1" action="/messages/<%=message.id%>/accept?_method=PUT" method="POST">
+						<div class="input-field col s12 m6 l4">
+							<i class="material-icons prefix">mode_edit</i><textarea id="textarea2" class="materialize-textarea" name="message"></textarea>
+					        <label for="textarea2">Message</label>
+					</div>
+					<div class="input-field col s12 m6 l4">
+						<i class="material-icons prefix">attach_file</i><textarea id="textarea2" class="materialize-textarea" name="source"></textarea>
+						<label for="textarea2">Source Files URL</label>
+					</div>
+					<input type="hidden" name="recipient" value="<%= message.sender %>">
+					<input type="hidden" name="sender" value="<%= message.recipient %>">
+					<input type="hidden" name="mockup" value="<%= message.mockup %>">
+					<input type="hidden" name="type" value="accept">
+
+
+				<h5 class="light-blue-text text-lighten-1">From:</h5>
+				<h5 class="black-text"><%= message.recipient %></h5><br><br>
+					    <div class="row">
+					      <input type="submit" value="Accept and Reply" class="waves-effect waves-light btn orange"/>
+					    </div>
+					</form>
+  			</div>
+		</main>
+		<% include ../partials/footer.ejs %>
+	</body>
+</html>

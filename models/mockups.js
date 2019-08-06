@@ -6,6 +6,7 @@ const mockupSchema = new mongoose.Schema({
   email: String,
   description: String,
   img: String,
+  developer: String,
   selected: {
 	  type: Boolean,
 	  default: false

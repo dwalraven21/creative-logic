@@ -1,6 +1,7 @@
 //___________________
 //Dependencies
 //___________________
+const morgan = require('morgan');
 const express = require('express');
 const methodOverride  = require('method-override');
 const mongoose = require ('mongoose');
@@ -50,6 +51,7 @@ app.use(session({
 }))
 //use method override
 app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
+app.use(morgan('tiny'));
 
 
 //___________________

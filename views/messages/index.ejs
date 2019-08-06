@@ -14,16 +14,26 @@
 				<% if(currentUser.username === messages[i].recipient) { %>
 				  <div class="row">
 				    <div class="col s12 m6">
-				      <div class="card light-blue lighten-3">
+				      <div class="card light-blue lighten-4">
 				        <div class="card-content black-text">
 				          <p class="card-title">To: <%= messages[i].recipient %></p><br>
 				          <p><%= messages[i].message %></p><br>
 						  <p class="card-title">From: <%= messages[i].sender %></p>
 				        </div>
+						<% if(messages[i].type === "request") { %>
 							<div class="card-action">
-					          <a href="#"  class="waves-effect waves-light btn green">Accept</a>
+					          <a href="<%=messages[i].id%>/accept"  class="waves-effect waves-light btn green">Accept</a>
 					          <a href="#"  class="waves-effect waves-light btn red">Reject</a>
 					        </div>
+						<% } %>
+						<% if(messages[i].type === "accept") { %>
+							<div class="card-action">
+					          <p>Source Files: <a href="<%=messages[i].source%>" class="light-blue-text"><%=messages[i].source%></a></p><br>
+							  <form action='/messages/<%=messages[i].id%>?_method=DELETE' method="POST">
+							  <input type="submit" value="DELETE" class="waves-effect waves-light btn red">
+							  </form>
+					        </div>
+						<% } %>
 				      </div>
 				    </div>
 				  </div>
