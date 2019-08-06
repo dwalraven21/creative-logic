@@ -3,11 +3,17 @@ const mongoose = require('mongoose')
 const messageSchema = new mongoose.Schema({
   sender: {type: String, required: true },
   recipient: {type: String, required: true },
-  type: String,
+  messageType: String,
   message: {type: String, required: true },
-  mockup: String,
-  source: String,
-  liveURL: String,
+  mockup: {type: String, required: true },
+  source: {
+	  type: String,
+	  default: '',
+  },
+  liveURL: {
+	  type: String,
+	  default: '',
+  }
 
 });
 

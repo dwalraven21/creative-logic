@@ -7,14 +7,8 @@ const mockupSchema = new mongoose.Schema({
   description: String,
   img: String,
   developer: String,
-  selected: {
-	  type: Boolean,
-	  default: false
-  },
-  built: {
-  	type: Boolean,
-  	default: false
-  },
+  selected: Boolean,
+  built: Boolean,
   liveURL: String,
 });
 

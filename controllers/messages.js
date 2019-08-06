@@ -12,6 +12,7 @@ messages.get('/:id/new', (req, res) => {
 	// first we need some info about the mockup
 	Mockup.findById(req.params.id, (err, foundMockup)=>{
 		Message.find({}, (error, allMessages) => {
+		if (req.session.currentUser){
 			res.render('messages/new.ejs', {
 				message: allMessages,
 				// we need to know who the sender is
@@ -19,6 +20,9 @@ messages.get('/:id/new', (req, res) => {
 				// and who the reciever is from the mockup data
 				mockup: foundMockup
 			})
+		} else {
+			res.redirect('/sessions/new');
+		}
 		})
 	})
 })
@@ -30,6 +34,7 @@ messages.get('/:id/accept', (req, res) => {
 	Message.findById(req.params.id, (err, foundMessage)=>{
 	// first we need some info about the mockup
 		Mockup.findById(foundMessage.mockup, (err, foundMockup)=>{
+			if (req.session.currentUser){
 			res.render('messages/accept.ejs', {
 				// we need to send the message back to the original message sender
 				message: foundMessage,
@@ -39,6 +44,9 @@ messages.get('/:id/accept', (req, res) => {
 				// we need to know who the current sender is
 				currentUser: req.session.currentUser,
 			})
+		} else {
+			res.redirect('/sessions/new');
+		}
 		})
 	})
 })
@@ -57,7 +65,11 @@ messages.post('/:id/new', (req, res) => {
 		Message.create(req.body, () => {
 			console.log(req.body);
 			Mockup.find({}, (error, allMockups) => {
-				res.render('/messages')
+			if (req.session.currentUser){
+				res.redirect('/messages')
+			} else {
+				res.redirect('/sessions/new');
+			}
 			})
 		})
 	})
@@ -101,7 +113,11 @@ messages.get('/sent', (req, res) => {
 // Allows the user to delete a message and redirects them to the inbox
 messages.delete('/:id', (req, res)=>{
     Message.findByIdAndRemove(req.params.id, (err, data)=>{
-        res.redirect('/')
+	if (req.session.currentUser){
+        res.redirect('/messages')
+	} else {
+		res.redirect('/sessions/new');
+	}
     });
 });
 
@@ -109,7 +125,11 @@ messages.delete('/:id', (req, res)=>{
 // Allows the user to delete a message and redirects them to the inbox
 messages.delete('/sent/:id', (req, res)=>{
     Message.findByIdAndRemove(req.params.id, (err, data)=>{
+	if (req.session.currentUser){
         res.redirect('/messages/sent')
+	} else {
+		res.redirect('/sessions/new');
+	}
     });
 });
 
@@ -133,9 +153,12 @@ messages.put('/:id/accept', (req, res) => {
 
 				console.log(updatedModel);
 				Mockup.find({}, (error, allMockups) => {
-
+				if (req.session.currentUser){
 					// Send user back to messages
 					res.redirect('/messages')
+				} else {
+					res.redirect('/sessions/new');
+				}
 				})
 			})
 		})

@@ -20,12 +20,20 @@
 				          <p><%= messages[i].message %></p><br>
 						  <p class="card-title">From: <%= messages[i].sender %></p>
 				        </div>
-						<% if(messages[i].type === "request") { %>
+						<% if(messages[i].messageType === "request") { %>
 							<div class="card-action">
-					          <a href="<%=messages[i].id%>/accept"  class="waves-effect waves-light btn green">Accept</a>
-					          <a href="#"  class="waves-effect waves-light btn red">Reject</a>
+								<div class="row">
+									<div class="col 6s 6m 6l">
+										<a href="<%=messages[i].id%>/accept"  class="waves-effect waves-light btn green">Accept</a>
+									</div>
+									<div class="col 6s 6m 6l">
+	  							  <form action='/messages/<%=messages[i].id%>?_method=DELETE' method="POST">
+	    							<input type="submit" value="Reject" class="waves-effect waves-light btn red">
+	    							</form>
+									</div>
+								</div>
 					        </div>
-						<% } else if(messages[i].type === "accept") { %>
+						<% } else if(messages[i].messageType === "accept") { %>
 							<div class="card-action">
 					          <p>Source Files: <a href="<%=messages[i].source%>" class="light-blue-text"><%=messages[i].source%></a></p><br>
 							  <form action='/messages/<%=messages[i].id%>?_method=DELETE' method="POST">
@@ -35,7 +43,7 @@
 						<% } else { %>
 							<form action='/messages/<%=messages[i].id%>?_method=DELETE' method="POST">
 							<input type="submit" value="DELETE" class="waves-effect waves-light btn red">
-							</form>		
+							</form>
 						<% } %>
 				      </div>
 				    </div>

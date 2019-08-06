@@ -19,7 +19,7 @@
 				          <p class="card-title">To: <%= messages[i].recipient %></p><br>
 				          <p><%= messages[i].message %></p><br>
 						  <p class="card-title">From: <%= messages[i].sender %></p><br>
-						  <% if(messages[i].type === "accept") { %>
+						  <% if(messages[i].messageType === "accept") { %>
   							<div class="card-action">
   					          <p>Source Files: <a href="<%=messages[i].source%>" class="light-blue-text"><%=messages[i].source%></a></p><br>
   							  <form action='/messages/sent/<%=messages[i].id%>?_method=DELETE' method="POST">
