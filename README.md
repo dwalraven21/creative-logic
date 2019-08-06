@@ -8,13 +8,15 @@ link to live site: https://creative-logic.herokuapp.com
 
 As a developer, I really enjoy building web pages based on pre-existing mockups, but I wish I had more mockups available to me. I am sure many designers are in the same boat. They have a great website design to include in a portfolio, but wouldn't it be great if future clients could see what the live version might look like?
 
-## Usage/User Story
+## User Story
 
 When a user first navigates to CreativeLogic they will be redirected to the login/sign-up page. Upon registration they can select if they are a designer, developer or both (or neither). They will then be taken to a view of all the available mockups. Here the experience will be slightly different for designers vs. developers.
 
 ### Designers
 
 Designers will be able to add new mockups, view all the mockups they have submitted on a separate page, and edit or delete their own mockups. (Designers can ONLY edit or delete their own projects.)
+
+![Screencast](https://recordit.co/pMMKD054fw)
 
 ### Developers
 
