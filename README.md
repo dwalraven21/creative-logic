@@ -16,12 +16,13 @@ When a user first navigates to CreativeLogic they will be redirected to the logi
 
 Designers will be able to add new mockups, view all the mockups they have submitted on a separate page, and edit or delete their own mockups. (Designers can ONLY edit or delete their own projects.)
 
+![Screencast](http://g.recordit.co/vtao9yhyBP.gif)
 
 ### Developers
 
 Developers will be able to see which mockups are available for use and which have already been selected by another developer. They can click "Select" on available mockups to view more information and "Request Source Files" to message the designer through the app. They can also view projects on which they are already the developer on a separate page.
 
-![Screencast](http://g.recordit.co/MfIPoX4Xoy.gif)
+![Screencast](http://g.recordit.co/Ufiuhbh3Jm.gif)
 
 ### Build Requests
 
@@ -33,7 +34,7 @@ Once this happens, the designer should receive a notification that the site is l
 
 In the process of testing this app and creating numerous fake accounts with designer/developer attributes, I ran into a very annoying problem of continuously entering incorrect usernames and passwords. I decided to take this issue and make it more fun by adding some special pages for these login errors.
 
-![Screencast](http://g.recordit.co/Mm7OYipDtQ.gif)
+![Screencast](http://g.recordit.co/IzLXGK7SB9.gif)
 
 ## Challenges
 
@@ -49,7 +50,7 @@ The messaging feature ended up being far more challenging to build than the rest
 
 Let's take the example of the designer seeing the request in their inbox and clicking "Accept".
 
-![Screencast](http://g.recordit.co/3t7IYQGQ5M.gif)
+![Screencast](http://g.recordit.co/asW1y5RVny.gif)
 
 Well first, I want the designer to go to message form, so they can send a reply and add the source files link.
 
