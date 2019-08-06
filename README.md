@@ -20,6 +20,8 @@ Designers will be able to add new mockups, view all the mockups they have submit
 
 Developers will be able to see which mockups are available for use and which have already been selected by another developer. They can click "Select" on available mockups to view more information and "Request Source Files" to message the designer through the app. They can also view projects on which they are already the developer on a separate page.
 
+![Screencast](http://g.recordit.co/Ufiuhbh3Jm.gif)
+
 ### Build Requests
 
 When the designer receives a developer's request, they can reject it or accept it (sending a message and link to source files to the developer). By clicking "accept", the status of the mockup will automatically be updated to "Selected". Other developers will now see that the mockup is no longer available to them. The developer who made the request will also now be given limited permission to edit the mockup. They can't edit the title, description or image as the designer can, but once they have finished with the build, they can edit the status to "built" and provide a live URL.
@@ -46,7 +48,7 @@ The messaging feature ended up being far more challenging to build than the rest
 
 Let's take the example of the designer seeing the request in their inbox and clicking "Accept".
 
-[Insert Screencast here]
+![Screencast](http://g.recordit.co/asW1y5RVny.gif)
 
 Well first, I want the designer to go to message form, so they can send a reply and add the source files link.
 
