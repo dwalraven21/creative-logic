@@ -8,13 +8,23 @@ link to live site: https://creative-logic.herokuapp.com
 
 As a developer, I really enjoy building web pages based on pre-existing mockups, but I wish I had more mockups available to me. I am sure many designers are in the same boat. They have a great website design to include in a portfolio, but wouldn't it be great if future clients could see what the live version might look like?
 
-## Usage
+## Usage/User Story
 
 When a user first navigates to CreativeLogic they will be redirected to the login/sign-up page. Upon registration they can select if they are a designer, developer or both (or neither). They will then be taken to a view of all the available mockups. Here the experience will be slightly different for designers vs. developers.
 
+### Designers
+
 Designers will be able to add new mockups, view all the mockups they have submitted on a separate page, and edit or delete their own mockups. (Designers can ONLY edit or delete their own projects.)
 
-Developers will be able to see which mockups are available for use and which have already been selected by another developer. They can click "Select" on available mockups to view more information and "Request Source Files" to email the designer directly. I would like to eventually move the messaging feature to be hosted within the app, instead of over email.
+### Developers
+
+Developers will be able to see which mockups are available for use and which have already been selected by another developer. They can click "Select" on available mockups to view more information and "Request Source Files" to message the designer through the app. They can also view projects on which they are already the developer on a separate page.
+
+### Build Requests
+
+When the designer receives a developer's request, they can reject it or accept it (sending a message and link to source files to the developer). By clicking "accept", the status of the mockup will automatically be updated to "Selected". Other developers will now see that the mockup is no longer available to them. The developer who made the request will also now be given limited permission to edit the mockup. They can't edit the title, description or image as the designer can, but once they have finished with the build, they can edit the status to "built" and provide a live URL.
+
+Once this happens, the designer should receive a notification that the site is live! The live URL is also available to view by other members of the CreativeLogic community.
 
 ## Just For Fun
 
@@ -24,93 +34,105 @@ In the process of testing this app and creating numerous fake accounts with desi
 
 ## Challenges
 
-One challenge was creating logic so that certain parts of the site would only be displayed for certain users. I handled this by having the user provide some information upon registration (designer and/or developer status) and then storing that in a user schema. Then I used if statements in my ejs files to display those special features only if the current user had a value of true for designer or developer (depending on the feature).
+When I build this app I initially set it up so that when the developer clicked "Request Source Files", an email opened up with the designer's email in the "to" line and "CreativeLogic Request for Source Files" in the "subject" line. I was pretty proud of myself.
 
-I also wanted to take some information from the user (email and username) and store that in my mockup schema whenever the user created a new mockup. I needed to do this for multiple reasons:
+But then I thought, "how cool would it be if instead of just sending an email, the requester could message the designer through the app itself, and I could create some functionality to update the status of the mockup automatically as this was happening?"
 
-1. To allow the content creator to edit and delete their own projects, but not allow users to delete or edit projects they don't own.
-2. To display a special page for designers to view only their own projects
-3. To allow developers to contact the designer for any particular mockup and request source files and permission to build the mockup.
+Did I bite off more than I could chew?
 
-Here us the Post/Create Route I used to create a new user:
+To that I answer, "mmmmell mmmammmbe".
+
+The messaging feature ended up being far more challenging to build than the rest of the app, simply because there were so many layers to it.
+
+Let's take the example of the designer seeing the request in their inbox and clicking "Accept".
+
+[Insert Screencast here]
+
+Well first, I want the designer to go to message form, so they can send a reply and add the source files link.
 
 ```JavaScript
-users.post('/', (req, res) => {
-	req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))
-	if (req.body.designer === "on") {
-		req.body.designer = true
-	} else {
-		req.body.designer = false
-	}
-	if (req.body.developer === "on") {
-		req.body.developer = true
-	} else {
-		req.body.developer = false
-	}
-
-	User.create(req.body, (err, createUser) => {
-		if (err) {
-			console.log(err);
-		} else {
-			Mockup.find({}, (error, allMockups) => {
-				req.session.currentUser = req.body
-				res.render('index.ejs', {
+// NEW - GET
+// When a user clicks to accept a developers request
+// They will be taken to form page to submit the message
+messages.get('/:id/accept', (req, res) => {
+	Message.findById(req.params.id, (err, foundMessage)=>{
+	// first we need some info about the mockup
+		Mockup.findById(foundMessage.mockup, (err, foundMockup)=>{
+			if (req.session.currentUser){
+			res.render('messages/accept.ejs', {
+				// we need to send the message back to the original message sender
+				message: foundMessage,
+				// we need to know what mockup this is in reference to
+				// so we can update the status to "selected" and add the developer username
+				mockup: foundMockup,
+				// we need to know who the current sender is
 				currentUser: req.session.currentUser,
-				mockups: allMockups
 			})
-	    })
-	  }
+		} else {
+			res.redirect('/sessions/new');
+		}
+		})
 	})
 })
 ```
-And here is how I grabbed that username/email info from them when they created a mockup:
+I also added some hidden inputs on my form, so that the designer doesn't need to see or input this information, but it would still be collected.
+
+```ejs
+
+<input type="hidden" name="recipient" value="<%= message.sender %>">
+<input type="hidden" name="sender" value="<%= message.recipient %>">
+<input type="hidden" name="mockup" value="<%= message.mockup %>">
+<input type="hidden" name="messageType" value="accept">
+
+```
+message.mockup was yet another key that I created earlier which stored the mockup id that was being referenced in the message
+
+Finally, when the user clicks "Accept and Reply", three things need to happen:
+1. The developer needs to receive a new message letting them know they've been accepted and providing the source files link
+2. The status of the mockup needs to change to "selected", so that other developers know it is no longer available
+3. The developer needs to be added to the mockup so that they have permission to add updates to the project including a live URL when the site is completed.
 
 ```JavaScript
-designers.post('/', (req, res) => {
-	req.body.author = req.session.currentUser.username;
-	req.body.email = req.session.currentUser.email;
-	Mockup.create(req.body, () => {
-		Mockup.find({}, (error, allMockups) => {
-		res.render('myprojects.ejs', {
-			currentUser: req.session.currentUser,
-			mockups: allMockups
-		});
-	  });
+// UPDATE - PUT
+// When a user clicks Accept and Reply (submits the form)
+// Dev gets a reply message including source files
+// Note: this is the Message id, not the Mockup id
+messages.put('/:id/accept', (req, res) => {
+
+	Message.create(req.body, (error, newMessage) => {
+
+		// We are updating the mockup with new info
+		Mockup.findByIdAndUpdate(newMessage.mockup, req.body, {new: true}, (err, updatedModel)=>{
+			// That message sender is now the developer for the mockup
+			updatedModel.developer = newMessage.sender;
+			// And selected is now true
+			updatedModel.selected = true;
+
+			console.log(updatedModel);
+			Mockup.find({}, (error, allMockups) => {
+				Message.find({}, (error, allMessages) => {
+					if (req.session.currentUser){
+						// Send user back to messages
+						res.redirect('/messages')
+					} else {
+						res.redirect('/sessions/new');
+					}
+				})
+			})
+		})
 	})
 })
+
 ```
-
-Finally, all of this is meaningless if I don't utilize some logic in my ejs files to check the username and use the email:
-
-```ejs
-<%	if (currentUser.developer === true && currentUser.username !== mockup.author) { %>
-    <p><b>This mockup is available for use.</b></p><br>
-	<a href="mailto:<%=mockup.email%>?subject=CreativeLogic%20Source%20Files%20Request" class="range-text text-lighten-3">Request Source Files</a><br><br>
-<% } %>
-```
-
-Here is some more logic to display Delete and Edit buttons, only for the mockup creator or "author"
-
-```ejs
-<% if(currentUser.username === mockup.author){ %>
-	<div class="row">
-		<div class="col">
-			<form action='/designers/<%=mockup.id%>?_method=DELETE' method="POST">
-			<input type="submit" value="DELETE" class="waves-effect waves-light btn orange"/>
-			</form>
-		</div>
-		<div class="col">
-			<a href="/designers/<%=mockup.id%>/edit" class="waves-effect waves-light btn orange">Edit</a>
-		</div>
-	</div>
-<% } %>
-```
+Whew! That's a lot of functionality for one button. And the user should be unaware of almost all of it. The best UX is the one that's invisible.
 
 ## Improvements
 
 One improvement I would like to make in the future is to have an additional view for users who are not signed in or registered. I always hate it when a website makes you sign up before you can see anything. I would like users to be able to still interact with the site (in a limited way) before committing to signing up.
 
-Another improvement would be to allow messaging between the designers and developers within the app, instead of over email. There could also be a button that the designer could click when the developer requests source files, that would simultaneously allow the developer to download source files, mark the project as "currently being built" and put the project in the developer's project section. Currently the designers can view their mockups, but developers can't view ones they are developing. This would require another key-object pair in my mockups schema for the developer's username so I can allow that user access to those elements.
+Another improvement would be to make the messaging part of the app a little nicer looking. I would love to change the inbox view to display just the subject and date of each message and allow the user to click to open the full message as an accordion or modal. I would also love to have some sort of indication when the message has been read, but I didn't have time to accomplish all of this in four days!
+
+Finally, as it stands now, the rejection button just deletes the message, and doesn't give any feedback to the requester, besides the message being removed from their outbox. (I mean... Facebook doesn't tell you if your friend request was accepted right?) One update I might make, is to provide a gentle rejection notice to the requester when this happens, "The designer has decided to go in a different direction. Your request was not accepted at this time.", or something so the requester at least knows what happened.
 
 ## Deployment
 
