@@ -120,27 +120,27 @@ messages.delete('/sent/:id', (req, res)=>{
 // Note: this is the Message id, not the Mockup id
 messages.put('/:id/accept', (req, res) => {
 
-	Message.create(req.body, (error, newMessage) => {
+		Message.create(req.body, (error, newMessage) => {
 
-		console.log(newMessage);
-		console.log(error);
-		// We are updating the mockup with new info
-		Mockup.findByIdAndUpdate(newMessage.mockup, req.body, {new: true}, (err, updatedModel)=>{
-			console.log(updatedModel);
-			// That message sender is now the developer for the mockup
-			updatedModel.developer = newMessage.sender;
-			// And selected is now true
-			updatedModel.selected = true;
+			console.log(newMessage);
+			console.log(error);
+			// We are updating the mockup with new info
+			Mockup.findByIdAndUpdate(newMessage.mockup, req.body, {new: true}, (err, updatedModel)=>{
+				console.log(updatedModel);
+				// That message sender is now the developer for the mockup
+				updatedModel.developer = newMessage.sender;
+				// And selected is now true
+				updatedModel.selected = true;
 
-			console.log(updatedModel);
-			Mockup.find({}, (error, allMockups) => {
+				console.log(updatedModel);
+				Mockup.find({}, (error, allMockups) => {
 
-				// Send user back to messages
-				res.redirect('/messages')
-
+					// Send user back to messages
+					res.redirect('/messages')
+				})
 			})
 		})
-	})
+
 })
 
 
