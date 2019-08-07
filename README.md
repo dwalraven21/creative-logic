@@ -28,7 +28,7 @@ Developers will be able to see which mockups are available for use and which hav
 
 When the designer receives a developer's request, they can reject it or accept it (sending a message and link to source files to the developer). By clicking "accept", the status of the mockup will automatically be updated to "Selected". Other developers will now see that the mockup is no longer available to them. The developer who made the request will also now be given limited permission to edit the mockup. They can't edit the title, description or image as the designer can, but once they have finished with the build, they can edit the status to "built" and provide a live URL.
 
-Once this happens, the designer should receive a notification that the site is live! The live URL is also available to view by other members of the CreativeLogic community.
+Once this happens, the designer should receive a notification that the site is live! (Note: I still need to add this part) The live URL is also available to view by other members of the CreativeLogic community.
 
 ## Just For Fun
 
@@ -126,7 +126,9 @@ Whew! That's a lot of functionality for one button. And the user should be unawa
 
 ## Improvements
 
-One improvement I would like to make in the future is to have an additional view for users who are not signed in or registered. I always hate it when a website makes you sign up before you can see anything. I would like users to be able to still interact with the site (in a limited way) before committing to signing up.
+One improvement I'm currently working on is adding some sort of alert/message to the designer once the developer says the project is live. I think the functionality will be similar to the message to the developer that their request has been accepted, but I just haven't had time to implement it yet.
+
+Something I would like to add in the future is an additional view for users who are not signed in or registered. I always hate it when a website makes you sign up before you can see anything. I would like users to be able to still interact with the site (in a limited way) before committing to signing up.
 
 Another improvement would be to make the messaging part of the app a little nicer looking. I would love to change the inbox view to display just the subject and date of each message and allow the user to click to open the full message as an accordion or modal. I would also love to have some sort of indication when the message has been read, but I didn't have time to accomplish all of this in four days.
 
