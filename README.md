@@ -16,13 +16,13 @@ When a user first navigates to CreativeLogic they will be redirected to the logi
 
 Designers will be able to add new mockups, view all the mockups they have submitted on a separate page, and edit or delete their own mockups. (Designers can ONLY edit or delete their own projects.)
 
-![Screencast](http://g.recordit.co/vtao9yhyBP.gif)
+![Screencast](http://g.recordit.co/iNuZRr2jKb.gif)
 
 ### Developers
 
 Developers will be able to see which mockups are available for use and which have already been selected by another developer. They can click "Select" on available mockups to view more information and "Request Source Files" to message the designer through the app. They can also view projects on which they are already the developer on a separate page.
 
-![Screencast](http://g.recordit.co/Ufiuhbh3Jm.gif)
+![Screencast](http://g.recordit.co/HO9uA7QkwZ.gif)
 
 ### Build Requests
 
@@ -34,7 +34,7 @@ Once this happens, the designer should receive a notification that the site is l
 
 In the process of testing this app and creating numerous fake accounts with designer/developer attributes, I ran into a very annoying problem of continuously entering incorrect usernames and passwords. I decided to take this issue and make it more fun by adding some special pages for these login errors.
 
-![Screencast](http://g.recordit.co/IzLXGK7SB9.gif)
+![Screencast](http://g.recordit.co/5JmtaMjZ0L.gif)
 
 ## Challenges
 
@@ -50,7 +50,7 @@ The messaging feature ended up being far more challenging to build than the rest
 
 Let's take the example of the designer seeing the request in their inbox and clicking "Accept".
 
-![Screencast](http://g.recordit.co/asW1y5RVny.gif)
+![Screencast](http://g.recordit.co/fug6ljMWex.gif)
 
 Well first, I want the designer to go to message form, so they can send a reply and add the source files link.
 
@@ -63,21 +63,22 @@ messages.get('/:id/accept', (req, res) => {
 	// first we need some info about the mockup
 		Mockup.findById(foundMessage.mockup, (err, foundMockup)=>{
 			if (req.session.currentUser){
-			res.render('messages/accept.ejs', {
-				// we need to send the message back to the original message sender
-				message: foundMessage,
-				// we need to know what mockup this is in reference to
-				// so we can update the status to "selected" and add the developer username
-				mockup: foundMockup,
-				// we need to know who the current sender is
-				currentUser: req.session.currentUser,
-			})
-		} else {
-			res.redirect('/sessions/new');
-		}
+				res.render('messages/accept.ejs', {
+					// we need to send the message back to the original message sender
+					message: foundMessage,
+					// we need to know what mockup this is in reference to
+					// so we can update the staus to "selected" and add the developer username
+					mockup: foundMockup,
+					// we need to know who the current sender is
+					currentUser: req.session.currentUser,
+				})
+			} else {
+				res.redirect('/sessions/new');
+			}
 		})
 	})
 })
+
 ```
 I also added some hidden inputs on my form, so that the designer doesn't need to see or input this information, but it would still be collected.
 
@@ -87,6 +88,8 @@ I also added some hidden inputs on my form, so that the designer doesn't need to
 <input type="hidden" name="sender" value="<%= message.recipient %>">
 <input type="hidden" name="mockup" value="<%= message.mockup %>">
 <input type="hidden" name="messageType" value="accept">
+<input type="hidden" name="selected" value="true">
+<input type="hidden" name="developer" value="<%= message.sender %>">
 
 ```
 message.mockup was yet another key that I created earlier which stored the mockup id that was being referenced in the message
@@ -104,25 +107,16 @@ Finally, when the user clicks "Accept and Reply", three things need to happen:
 messages.put('/:id/accept', (req, res) => {
 
 	Message.create(req.body, (error, newMessage) => {
-
+		console.log(newMessage);
+		console.log(error);
 		// We are updating the mockup with new info
 		Mockup.findByIdAndUpdate(newMessage.mockup, req.body, {new: true}, (err, updatedModel)=>{
-			// That message sender is now the developer for the mockup
-			updatedModel.developer = newMessage.sender;
-			// And selected is now true
-			updatedModel.selected = true;
-
-			console.log(updatedModel);
-			Mockup.find({}, (error, allMockups) => {
-				Message.find({}, (error, allMessages) => {
-					if (req.session.currentUser){
-						// Send user back to messages
-						res.redirect('/messages')
-					} else {
-						res.redirect('/sessions/new');
-					}
-				})
-			})
+			if (req.session.currentUser){
+				// Send user back to messages
+				res.redirect('/messages')
+			} else {
+				res.redirect('/sessions/new');
+			}
 		})
 	})
 })
@@ -134,7 +128,7 @@ Whew! That's a lot of functionality for one button. And the user should be unawa
 
 One improvement I would like to make in the future is to have an additional view for users who are not signed in or registered. I always hate it when a website makes you sign up before you can see anything. I would like users to be able to still interact with the site (in a limited way) before committing to signing up.
 
-Another improvement would be to make the messaging part of the app a little nicer looking. I would love to change the inbox view to display just the subject and date of each message and allow the user to click to open the full message as an accordion or modal. I would also love to have some sort of indication when the message has been read, but I didn't have time to accomplish all of this in four days!
+Another improvement would be to make the messaging part of the app a little nicer looking. I would love to change the inbox view to display just the subject and date of each message and allow the user to click to open the full message as an accordion or modal. I would also love to have some sort of indication when the message has been read, but I didn't have time to accomplish all of this in four days.
 
 Finally, as it stands now, the rejection button just deletes the message, and doesn't give any feedback to the requester, besides the message being removed from their outbox. (I mean... Facebook doesn't tell you if your friend request was accepted right?) One update I might make, is to provide a gentle rejection notice to the requester when this happens, "The designer has decided to go in a different direction. Your request was not accepted at this time.", or something so the requester at least knows what happened.
 

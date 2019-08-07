@@ -1,7 +1,7 @@
 module.exports = [
 	{
         name: 'Mountain',
-		author: 'dwalraven21',
+		author: 'desginer',
 		email: 'dwalraven21@gamil.com',
         description: 'Some recent experimenting. Thanks for checking it out, have a good one!',
         img: 'https://cdn.dribbble.com/users/674925/screenshots/5500850/_____2x.jpg',
@@ -32,7 +32,7 @@ module.exports = [
     },
 	{
 	    name: 'MAROC',
-		author: 'dmclean21',
+		author: 'desginer',
 		email: 'dmclean21@gamil.com',
 	    description: 'Very simple animation and the gif is a bit rough because it is only a concept so there are a few glitches that we would have cleaned up if we moved forward with it.',
 	    img: 'https://cdn.dribbble.com/users/1846841/screenshots/4952023/maroc-4.gif',

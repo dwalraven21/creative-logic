@@ -139,11 +139,7 @@ messages.delete('/sent/:id', (req, res)=>{
 // Dev gets a reply message including source files
 // Note: this is the Message id, not the Mockup id
 messages.put('/:id/accept', (req, res) => {
-	// update original message message type to none, so we can hide those accept reject buttons
-	// req.body.messageType = 'none';
-	// Mockup.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedMessage)=>{
-	//
-	// 	console.log(updatedMessage);
+
 	Message.create(req.body, (error, newMessage) => {
 		console.log(newMessage);
 		console.log(error);
