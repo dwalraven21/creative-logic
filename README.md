@@ -142,7 +142,8 @@ Finally, as it stands now, the rejection button just deletes the message, and do
 
 * Node.js
 * MongoDB / Mongoose
-* Express / EJS
+* Express
+* EJS
 * Materialize (CSS framework)
 * bcrypt (password hashing function)
 * Using RESTful Routes and full CRUD
